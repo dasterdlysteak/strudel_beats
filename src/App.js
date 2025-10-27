@@ -141,9 +141,9 @@ return (
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <div id="editor" />
-                        <div id="output" />
+                    <div className="col-md-8 " style={{ maxHeight: '50vh', overflowY: 'auto' }}>
+                        <div className="rounded" id="editor" />
+                        <div className="rounded" id="output" />
                     </div>
                     <div className="col-md-4">
                         <DJ_Controls onPLay={handlePlay} onStop={handleStop}/>
