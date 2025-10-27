@@ -1,13 +1,9 @@
 import {ProcAndPlay} from "../App";
 
-function DJ_Controls() {
+function DJ_Controls({onPLay, onStop}) {
     return(
         <>
-            <div className="input-group mb-3">
-                <span className="input-group-text" id="cpm_label">setCPM</span>
-                <input type="text" className="form-control" placeholder="120" aria-label="cpm"
-                       aria-describedby="cpm_label"/>
-            </div>
+
 
             <div className="card shadow-sm p-3" style={{ maxWidth: "400px" }}>
 
@@ -27,7 +23,7 @@ function DJ_Controls() {
                     <button className="btn btn-outline-secondary btn-sm">
                         Backwards or slow down
                     </button>
-                    <button className="btn btn-dark">
+                    <button className="btn btn-dark" onClick={onPLay}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              className="bi bi-play" viewBox="0 0 16 16">
                             <path

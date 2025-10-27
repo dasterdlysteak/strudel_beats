@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useRef } from "react";
+import {useEffect, useRef, useState} from "react";
 import { StrudelMirror } from '@strudel/codemirror';
 import { evalScope } from '@strudel/core';
 import { drawPianoroll } from '@strudel/draw';
@@ -20,40 +20,40 @@ const handleD3Data = (event) => {
     console.log(event.detail);
 };
 
-export function SetupButtons() {
+// export function SetupButtons() {
+//
+//     document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
+//     document.getElementById('stop').addEventListener('click', () => globalEditor.stop());
+//     document.getElementById('process').addEventListener('click', () => {
+//         Proc()
+//     }
+//     )
+//     document.getElementById('process_play').addEventListener('click', () => {
+//         if (globalEditor != null) {
+//             Proc()
+//             globalEditor.evaluate()
+//         }
+//     }
+//     )
+// }
 
-    document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
-    document.getElementById('stop').addEventListener('click', () => globalEditor.stop());
-    document.getElementById('process').addEventListener('click', () => {
-        Proc()
-    }
-    )
-    document.getElementById('process_play').addEventListener('click', () => {
-        if (globalEditor != null) {
-            Proc()
-            globalEditor.evaluate()
-        }
-    }
-    )
-}
 
 
+// export function ProcAndPlay() {
+//     if (globalEditor != null && globalEditor.repl.state.started == true) {
+//         console.log(globalEditor)
+//         Proc()
+//         globalEditor.evaluate();
+//     }
+// }
 
-export function ProcAndPlay() {
-    if (globalEditor != null && globalEditor.repl.state.started == true) {
-        console.log(globalEditor)
-        Proc()
-        globalEditor.evaluate();
-    }
-}
-
-export function Proc() {
-
-    let proc_text = document.getElementById('proc').value
-    let proc_text_replaced = proc_text.replaceAll('<p1_Radio>', ProcessText);
-    ProcessText(proc_text);
-    globalEditor.setCode(proc_text_replaced)
-}
+// export function Proc() {
+//
+//     let proc_text = document.getElementById('proc').value
+//     let proc_text_replaced = proc_text.replaceAll('<p1_Radio>', ProcessText);
+//     ProcessText(proc_text);
+//     globalEditor.setCode(proc_text_replaced)
+// }
 
 export function ProcessText(match, ...args) {
 
@@ -67,9 +67,18 @@ export function ProcessText(match, ...args) {
 
 export default function StrudelDemo() {
 
-const hasRun = useRef(false);
+    const hasRun = useRef(false);
 
-useEffect(() => {
+    const handlePlay = () => {
+        globalEditor.evaluate()
+    }
+    const handleStop = ()=>{
+        globalEditor.stop()
+    }
+
+    const [songText, setSongText] = useState(stranger_tune)
+
+    useEffect(() => {
 
     if (!hasRun.current) {
         document.addEventListener("d3Data", handleD3Data);
@@ -103,11 +112,11 @@ useEffect(() => {
             });
             
         document.getElementById('proc').value = stranger_tune
-        SetupButtons()
-        Proc()
+        // SetupButtons()
+        // Proc()
     }
-
-}, []);
+    globalEditor.setCode(songText)
+}, [songText]);
 
 
 return (
@@ -118,14 +127,14 @@ return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <PreProcessTextArea />
+                        <PreProcessTextArea defaultValue={songText} onChange={(e)=>setSongText(e.target.value)} />
                     </div>
                     <div className="col-md-4">
 
                         <nav>
                             <ProcButtons />
                             <br />
-                            <PlayButtons />
+                            <PlayButtons onPLay={handlePlay} onStop={handleStop}/>
                         </nav>
                     </div>
                 </div>
@@ -135,7 +144,7 @@ return (
                         <div id="output" />
                     </div>
                     <div className="col-md-4">
-                        <DJ_Controls/>
+                        <DJ_Controls onPLay={handlePlay} onStop={handleStop}/>
                     </div>
                 </div>
             </div>
