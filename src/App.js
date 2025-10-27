@@ -13,6 +13,7 @@ import DJ_Controls from "./components/DJ_Controls";
 import PlayButtons from './components/PlayButtons';
 import ProcButtons from './components/ProcButtons';
 import PreProcessTextArea from './components/PreProcessTextArea';
+import StandardControlArea from "./components/StandardControlArea";
 
 let globalEditor = null;
 
@@ -124,7 +125,7 @@ return (
         <h2>Strudel Demo</h2>
         <main>
 
-            <div className="container-fluid">
+            <div className="container-fluid bg-dark">
                 <div className="row">
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
                         <PreProcessTextArea defaultValue={songText} onChange={(e)=>setSongText(e.target.value)} />
@@ -132,9 +133,10 @@ return (
                     <div className="col-md-4">
 
                         <nav>
-                            <ProcButtons />
+                            <StandardControlArea onPlay={handlePlay} onStop={handleStop}/>
+
                             <br />
-                            <PlayButtons onPLay={handlePlay} onStop={handleStop}/>
+
                         </nav>
                     </div>
                 </div>

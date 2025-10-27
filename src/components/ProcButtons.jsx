@@ -4,10 +4,10 @@ import DJ_Controls from "./DJ_Controls";
 function ProcButtons(){
     return (
         <>
-            <div className="btn-group" role="gropup" aria-label="Basic button">
-                <button id="process" className="btn btn-outline-primary">Preprocess</button>
-                <button id="process_play" className="btn btn-outline-primary">Proc & Play</button>
-            </div>
+            <>
+                <button id="process" className="btn btn-primary flex-fill">Preprocess</button>
+                <button id="process_play" className="btn btn-primary flex-fill">Proc & Play</button>
+            </>
         </>
     )
 }
