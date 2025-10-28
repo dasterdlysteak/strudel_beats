@@ -111,6 +111,8 @@ export default function StrudelDemo() {
                     await Promise.all([loadModules, registerSynthSounds(), registerSoundfonts()]);
                 },
             });
+            console.log(StrudelMirror)
+        {console.log(globalEditor);} //you can look at whats in the global editor with this!
             
         document.getElementById('proc').value = stranger_tune
         // SetupButtons()
@@ -120,34 +122,31 @@ export default function StrudelDemo() {
 }, [songText]);
 
 
+
 return (
     <div>
         <h2>Strudel Demo</h2>
         <main>
 
-            <div className="container-fluid bg-dark">
+            <div className="container bg-body-secondary">
                 <div className="row">
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
                         <PreProcessTextArea defaultValue={songText} onChange={(e)=>setSongText(e.target.value)} />
                     </div>
                     <div className="col-md-4">
 
-                        <nav>
-                            <StandardControlArea onPlay={handlePlay} onStop={handleStop}/>
-
                             <br />
-
-                        </nav>
+                            <StandardControlArea onPlay={handlePlay} onStop={handleStop}/>
+                            <DJ_Controls onPLay={handlePlay} onStop={handleStop}/>
                     </div>
+
                 </div>
                 <div className="row">
-                    <div className="col-md-8 " style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <div className="rounded" id="editor" />
-                        <div className="rounded" id="output" />
+                    <div className="col-md-8 g-3" style={{ maxHeight: '50vh', overflowY: 'auto', scrollbarWidth: 'none' }}>
+                        <div className={"rounded"} id="editor" />
+                        <div id="output" />
                     </div>
-                    <div className="col-md-4">
-                        <DJ_Controls onPLay={handlePlay} onStop={handleStop}/>
-                    </div>
+
                 </div>
             </div>
             <canvas id="roll"></canvas>
