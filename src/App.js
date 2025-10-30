@@ -85,9 +85,9 @@ export default function StrudelDemo() {
     const handleVolumeChange = (Volume) => {
         console.log(`volume: %{Volume}`)
         let instrumentBlocks = parser.getInstrumentBlocks(songText)
-        instrumentBlocks = effectController.changeVolume(instrumentBlocks, Volume)
-        setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
-        globalEditor.evaluate()
+        //instrumentBlocks = effectController.changeVolume(instrumentBlocks, Volume)
+        //setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
+        //globalEditor.evaluate()
     }
 
     const parser = SongTextParser();
@@ -152,7 +152,7 @@ return (
 
                             <br />
                             <StandardControlArea onPlay={handlePlay} onStop={handleStop}/>
-                            <DJ_Controls onPLay={handlePlay} onStop={handleStop} onVolumeChange={handleVolumeChange}/>
+                            <DJ_Controls onPLay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value)} />
                     </div>
 
                 </div>

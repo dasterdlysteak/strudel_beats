@@ -7,17 +7,25 @@ export const SongTextParser = (songText) => {
 
         lines.forEach(line => {
             let title = line.match(/^[A-Za-z0-9_]+:\s*$/);
-            if (title != null) {
-                if (currentInstrumentBlock != null) {
+            if (title) {
+                if (currentInstrumentBlock) {
                     instrumentBlocks.push(currentInstrumentBlock);
+                    console.log("current Block in parser")
+                    console.log(currentInstrumentBlock)
                 }
+                console.log("heres the problem in parser")
                 currentInstrumentBlock = {name: title[0].trim(":"), codeBlock: ""}
 
-            } else if (currentInstrumentBlock != null) {
-                instrumentBlocks.push(currentInstrumentBlock);
+
+            } else if (currentInstrumentBlock) {
+                currentInstrumentBlock.codeBlock += line;
             }
+
         })
-        console.log(instrumentBlocks);
+        if (currentInstrumentBlock){
+            instrumentBlocks.push(currentInstrumentBlock);
+            console.log(currentInstrumentBlock)
+        }
         return instrumentBlocks;
     }
 
