@@ -83,6 +83,7 @@ export default function StrudelDemo() {
         globalEditor.stop()
     }
     const handleVolumeChange = (Volume) => {
+        console.log(`volume: %{Volume}`)
         let instrumentBlocks = parser.getInstrumentBlocks(songText)
         instrumentBlocks = effectController.changeVolume(instrumentBlocks, Volume)
         setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))

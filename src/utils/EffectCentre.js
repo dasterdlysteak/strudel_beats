@@ -22,14 +22,17 @@ export const EffectCentre  = () => {
                 if (/\.gain\([^]*]\)/.test(afterStack)){
                     afterStack = afterStack.replace(/\.gain\([^]*\)/, `.gain(${volume})`);
                 }else{
-                    afterStack.append(`.gain(${volume})`);
+                    afterStack = afterStack + `.gain(${volume})`;
+
                 }
                 body = theStack+afterStack;
+                console.log(body)
             }else{
                 if (/\.gain\([^]*]\)/.test(body)){
                     body = body.replace(/\.gain\([^]*]\)/, `.gain(${volume})`);
                 }else{
-                    body.append(`.gain(${volume})`); // I think there may be whitespace here that needs trimming: TEST
+                    body = body + `.gain(${volume})`; // I think there may be whitespace here that needs trimming: TEST
+                    console.log(body)
                 }
 
             }

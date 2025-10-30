@@ -6,7 +6,7 @@ export const SongTextParser = (songText) => {
         let currentInstrumentBlock = null;
 
         lines.forEach(line => {
-            let title = line.match(/^[A-Za-z0-9_]+:\s*$/);// find or figure out regex for word:
+            let title = line.match(/^[A-Za-z0-9_]+:\s*$/);
             if (title != null) {
                 if (currentInstrumentBlock != null) {
                     instrumentBlocks.push(currentInstrumentBlock);
@@ -17,6 +17,7 @@ export const SongTextParser = (songText) => {
                 instrumentBlocks.push(currentInstrumentBlock);
             }
         })
+        console.log(instrumentBlocks);
         return instrumentBlocks;
     }
 
