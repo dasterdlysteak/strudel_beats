@@ -71,7 +71,7 @@ export function ProcessText(match, ...args) {
 export default function StrudelDemo() {
 
     const effectController = EffectCentre();
-    const updatedBlocks = effectController.changeVolume(instrumentBlocks, 0.9);
+
 
 
     const hasRun = useRef(false);
@@ -89,7 +89,7 @@ export default function StrudelDemo() {
         globalEditor.evaluate()
     }
 
-    const parser = new SongTextParser();
+    const parser = SongTextParser();
 
     const [songText, setSongText] = useState(stranger_tune)
 
