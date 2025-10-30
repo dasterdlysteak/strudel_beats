@@ -26,8 +26,12 @@ export const EffectCentre  = {
                 }
                 body = theStack+afterStack;
             }else{
-            // more logic for searching through an instrument block that is not a stack for .gain()
-            // replacing if exists and appending if not exists
+                if (/\.gain\([^]*]\)/.test(body)){
+                    body = body.replace(/\.gain\([^]*]\)/, `.gain(${volume})`);
+                }else{
+                    body.append(`.gain(${volume})`); // I think there may be whitespace here that needs trimming: TEST
+                }
+
             }
             instrumentBlock.codeBlock = body
         })
