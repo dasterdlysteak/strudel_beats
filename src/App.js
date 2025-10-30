@@ -14,6 +14,8 @@ import PlayButtons from './components/PlayButtons';
 import ProcButtons from './components/ProcButtons';
 import PreProcessTextArea from './components/PreProcessTextArea';
 import StandardControlArea from "./components/StandardControlArea";
+import {SongTextParser} from "./utils/SongTextParser";
+import {EffectCentre} from "./utils/EffectCentre";
 
 let globalEditor = null;
 
@@ -68,6 +70,10 @@ export function ProcessText(match, ...args) {
 
 export default function StrudelDemo() {
 
+    const effectController = EffectCentre();
+    const updatedBlocks = effectController.changeVolume(instrumentBlocks, 0.9);
+
+
     const hasRun = useRef(false);
 
     const handlePlay = () => {
@@ -76,6 +82,14 @@ export default function StrudelDemo() {
     const handleStop = ()=>{
         globalEditor.stop()
     }
+    const handleVolumeChange = (Volume) => {
+        let instrumentBlocks = parser.getInstrumentBlocks(songText)
+        instrumentBlocks = effectController.changeVolume(instrumentBlocks, Volume)
+        setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
+        globalEditor.evaluate()
+    }
+
+    const parser = new SongTextParser();
 
     const [songText, setSongText] = useState(stranger_tune)
 
@@ -137,7 +151,7 @@ return (
 
                             <br />
                             <StandardControlArea onPlay={handlePlay} onStop={handleStop}/>
-                            <DJ_Controls onPLay={handlePlay} onStop={handleStop}/>
+                            <DJ_Controls onPLay={handlePlay} onStop={handleStop} onVolumeChange={handleVolumeChange}/>
                     </div>
 
                 </div>

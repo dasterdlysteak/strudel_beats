@@ -1,6 +1,6 @@
 export const SongTextParser = (songText) => {
 
-    function getInstrumentBlocks(songText) {
+    export function getInstrumentBlocks(songText) {
         const lines = songText.split('\n');
         const instrumentBlocks = []
         let currentInstrumentBlock = null;
@@ -20,7 +20,7 @@ export const SongTextParser = (songText) => {
         return instrumentBlocks;
     }
 
-    function replaceInstrumentBlocks(instrumentBlocks, songText) {
+    export function replaceInstrumentBlocks(instrumentBlocks, songText) {
         instrumentBlocks.forEach(instrumentBlock => {
             const name = instrumentBlock.name;
             const codeBlock = instrumentBlock.code;
@@ -30,4 +30,9 @@ export const SongTextParser = (songText) => {
         })
         return songText;
     }
+
+    return {
+        getInstrumentBlocks,
+        replaceInstrumentBlocks
+    };
 }

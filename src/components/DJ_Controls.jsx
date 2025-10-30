@@ -1,6 +1,6 @@
 import {ProcAndPlay} from "../App";
 
-function DJ_Controls({onPLay, onStop}) {
+function DJ_Controls({onPLay, onStop, onVolumeChange}) {
     return(
         <>
 
@@ -8,7 +8,7 @@ function DJ_Controls({onPLay, onStop}) {
             <div className="card shadow-sm p-3" style={{ maxWidth: "400px" }}>
 
                 <label htmlFor="volume_range" className="form-label">Volume</label>
-                <input type="range" className="form-range" min="0" max="5" step="0.5" id="volume_range"/>
+                <input type="range" className="form-range" min="0" max="1" step="0.05" id="volume_range" onInput={onVolumeChange}/>
 
                 <div className="d-flex align-items-center mb-3">
                     <div>

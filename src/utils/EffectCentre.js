@@ -1,5 +1,5 @@
-export const EffectCentre  = {
-    changeVolume (InstrumentBlocks, volume) {
+export const EffectCentre  = () => {
+    function changeVolume (InstrumentBlocks, volume) {
         InstrumentBlocks.forEach(instrumentBlock => {
             let body = instrumentBlock.codeBlock
             let isStack = (/stack\s*\(/.test(body))
@@ -35,5 +35,7 @@ export const EffectCentre  = {
             }
             instrumentBlock.codeBlock = body
         })
+        return InstrumentBlocks;
     }
+    return {changeVolume};
 }
