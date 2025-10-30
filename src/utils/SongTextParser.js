@@ -21,6 +21,13 @@ export const SongTextParser = (songText) => {
     }
 
     function replaceInstrumentBlocks(instrumentBlocks, songText) {
-
+        instrumentBlocks.forEach(instrumentBlock => {
+            const name = instrumentBlock.name;
+            const codeBlock = instrumentBlock.code;
+            if (`/^${name}:\s*\n([\s\S]*?)(?=^[A-Za-z0-9_]+:\s*$|^\/\/|^$)/gm`){
+                songText.replace(`/^${name}:\s*\n([\s\S]*?)(?=^[A-Za-z0-9_]+:\s*$|^\/\/|^$)/gm`, `${name}: \n${instrumentBlock.codeBlock}`);
+            }
+        })
+        return songText;
     }
 }
