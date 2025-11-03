@@ -128,12 +128,9 @@ export default function StrudelDemo() {
                     await Promise.all([loadModules, registerSynthSounds(), registerSoundfonts()]);
                 },
             });
-            console.log(StrudelMirror)
-        {console.log(globalEditor);} //you can look at whats in the global editor with this!
             
         document.getElementById('proc').value = stranger_tune
-        // SetupButtons()
-        // Proc()
+
     }
     //console.log(songText)
     globalEditor.setCode(songText)
@@ -143,26 +140,28 @@ export default function StrudelDemo() {
 
 return (
     <div>
-        <h2>Strudel Demo</h2>
+
         <main>
 
-            <div className="container bg-body-secondary">
+            <div className="container bg-dark-subtle min-vh-100">
+
+                <h2 className="display-3 text-light text-center">Strudel Demo</h2>
+
                 <div className="row">
-                    <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
+                    <div className="col-md-8 g-3" style={{ maxHeight: '50vh', overflowY: 'auto', scrollbarWidth: 'none' }}>
                         <PreProcessTextArea defaultValue={songText} onChange={(e)=>setSongText(e.target.value)} />
                     </div>
                     <div className="col-md-4">
 
                             <br />
-                            <StandardControlArea onPlay={handlePlay} onStop={handleStop}/>
-                            <DJ_Controls isPlaying={isPLaying} onPLay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value)} />
+                            <StandardControlArea onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
                     </div>
 
                 </div>
                 <div className="row">
-                    <div className="col-md-8 g-3" style={{ maxHeight: '50vh', overflowY: 'auto', scrollbarWidth: 'none' }}>
-                        <div className={"rounded"} id="editor" />
-                        <div id="output" />
+                    <div className="col-md-8 g-3 rounded hide-scrollbar" style={{ maxHeight: '45vh'}}>
+                        <div className={"rounded form-control bg-dark text-light border-secondary mb-5"} id="editor" style={{ maxHeight: '45vh', overflowY: 'auto', scrollbarWidth: 'none' }}/>
+                        <div className={"rounded"} id="output" />
                     </div>
 
                 </div>

@@ -1,15 +1,16 @@
 import CPM_control from "./CPM_control";
 import PlayButtons from "./PlayButtons";
 import ProcButtons from "./ProcButtons";
+import DJ_Controls from "./DJ_Controls";
 
-function StandardControlArea({onPlay, onStop}){
+
+function StandardControlArea({onPlay, onStop, onVolumeChange, isPlaying}){
     return (
         <div className="card bg-secondary p-3 mb-3">
-            <div className="d-flex gap-2">
-                <ProcButtons/>
-            </div>
-            <div className="d-flex mt-3 gap-2" role="gropup" aria-label="Basic button">
-                <PlayButtons onPlay={onPlay} onStop={onStop} />
+
+            <div className="d-flex mt-3 gap-2" role="group" aria-label="Basic button">
+
+                <DJ_Controls onPlay={onPlay} onStop={onStop} onVolumeChange={onVolumeChange} isPlaying={isPlaying} />
             </div>
 
             <div className="mt-3">
