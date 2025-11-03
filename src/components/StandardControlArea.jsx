@@ -6,7 +6,7 @@ import DJ_Controls from "./DJ_Controls";
 
 function StandardControlArea({onPlay, onStop, onVolumeChange, isPlaying}){
     return (
-        <div className="card bg-secondary p-3 mb-3">
+        <div className="card bg-secondary bg-opacity-75 p-3 mb-3">
 
             <div className="d-flex mt-3 gap-2" role="group" aria-label="Basic button">
 

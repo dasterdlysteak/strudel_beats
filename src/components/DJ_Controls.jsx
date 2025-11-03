@@ -5,25 +5,29 @@ function DJ_Controls({onPlay, onStop, onVolumeChange, isPlaying}) {
         <>
 
 
-            <div className="card shadow-sm p-3" style={{ maxWidth: "400px" }}>
+            <div className="card  w-100 shadow-sm  p-3" style={{ maxWidth: "400px" }}>
 
                 <label htmlFor="volume_range" className="form-label">Volume</label>
                 <input type="range" className="form-range" min="0" max="1" step="0.05" id="volume_range" onInput={onVolumeChange}/>
 
-                <div className="d-flex align-items-center mb-3">
-                    <div>
-                        <h6 className="mb-0">track name</h6>
-                        <small className="text-muted">user who made track</small>
+                <div className="d-flex align-items-center mb-2 ">
+                    <div className="d-flex flex-column align-items-center w-100">
+                        <h6 className="text-center">Untitled</h6>
+                        <small className="text-muted text-center">Algorave Dave</small>
                     </div>
                 </div>
 
 
 
                 <div className="d-flex justify-content-center gap-3">
-                    <button className="btn btn-outline-secondary btn-sm">
-                        Backwards or slow down
+                    <button className="btn btn-outline-secondary btn-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             className="bi bi-skip-backward-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M.5 3.5A.5.5 0 0 0 0 4v8a.5.5 0 0 0 1 0V8.753l6.267 3.636c.54.313 1.233-.066 1.233-.697v-2.94l6.267 3.636c.54.314 1.233-.065 1.233-.696V4.308c0-.63-.693-1.01-1.233-.696L8.5 7.248v-2.94c0-.63-.692-1.01-1.233-.696L1 7.248V4a.5.5 0 0 0-.5-.5"/>
+                        </svg>
                     </button>
-                    <button className="btn btn-dark" onClick={isPlaying ? onStop : onPlay}>
+                    <button className="btn btn-dark btn-lg" onClick={isPlaying ? onStop : onPlay}>
                         {isPlaying ? (
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  className="bi bi-pause" viewBox="0 0 16 16">
@@ -39,8 +43,12 @@ function DJ_Controls({onPlay, onStop, onVolumeChange, isPlaying}) {
                         ) }
 
                     </button>
-                    <button className="btn btn-outline-secondary btn-sm">
-                        forward or speed up ?
+                    <button className="btn btn-outline-secondary btn-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             className="bi bi-skip-forward-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M15.5 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V8.753l-6.267 3.636c-.54.313-1.233-.066-1.233-.697v-2.94l-6.267 3.636C.693 12.703 0 12.324 0 11.693V4.308c0-.63.693-1.01 1.233-.696L7.5 7.248v-2.94c0-.63.693-1.01 1.233-.696L15 7.248V4a.5.5 0 0 1 .5-.5"/>
+                        </svg>
                     </button>
                 </div>
             </div>

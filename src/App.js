@@ -16,6 +16,7 @@ import PreProcessTextArea from './components/PreProcessTextArea';
 import StandardControlArea from "./components/StandardControlArea";
 import {SongTextParser} from "./utils/SongTextParser";
 import {EffectCentre} from "./utils/EffectCentre";
+import DJSliders from "./components/DJSliders";
 
 let globalEditor = null;
 
@@ -143,7 +144,7 @@ return (
 
         <main>
 
-            <div className="container bg-dark-subtle min-vh-100">
+            <div className="container min-vh-100">
 
                 <h2 className="display-3 text-light text-center">Strudel Demo</h2>
 
@@ -163,7 +164,9 @@ return (
                         <div className={"rounded form-control bg-dark text-light border-secondary mb-5"} id="editor" style={{ maxHeight: '45vh', overflowY: 'auto', scrollbarWidth: 'none' }}/>
                         <div className={"rounded"} id="output" />
                     </div>
-
+                    <div className="col-md-4">
+                        <DJSliders/>
+                    </div>
                 </div>
             </div>
             <canvas id="roll"></canvas>
