@@ -133,7 +133,7 @@ export default function StrudelDemo() {
         // SetupButtons()
         // Proc()
     }
-    console.log(songText)
+    //console.log(songText)
     globalEditor.setCode(songText)
 }, [songText]);
 
