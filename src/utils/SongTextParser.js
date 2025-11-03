@@ -10,10 +10,10 @@ export const SongTextParser = (songText) => {
             if (title) {
                 if (currentInstrumentBlock) {
                     instrumentBlocks.push(currentInstrumentBlock);
-                    console.log("current Block in parser")
-                    console.log(currentInstrumentBlock)
+                    //console.log("current Block in parser")
+                    //console.log(currentInstrumentBlock)
                 }
-                console.log("heres the problem in parser")
+                //console.log("heres the problem in parser")
                 currentInstrumentBlock = {name: title[0].trim(":"), codeBlock: ""}
 
 
@@ -24,7 +24,7 @@ export const SongTextParser = (songText) => {
         })
         if (currentInstrumentBlock){
             instrumentBlocks.push(currentInstrumentBlock);
-            console.log(currentInstrumentBlock)
+            //console.log(currentInstrumentBlock)
         }
         return instrumentBlocks;
     }
@@ -37,6 +37,7 @@ export const SongTextParser = (songText) => {
                 songText.replace(`/^${name}:\s*\n([\s\S]*?)(?=^[A-Za-z0-9_]+:\s*$|^\/\/|^$)/gm`, `${name}: \n${instrumentBlock.codeBlock}`);
             }
         })
+        console.log(songText)
         return songText;
     }
 

@@ -22,17 +22,17 @@ export const EffectCentre  = () => {
                 if (/\.gain\([^]*]\)/.test(afterStack)){
                     afterStack = afterStack.replace(/\.gain\([^]*\)/, `.gain(${volume})`);
                 }else{
-                    afterStack = afterStack + `.gain(${volume})`;
+                    afterStack = `.gain(${volume})` + afterStack ;// putting gain before the stack accounts for if there is weird markup not caught by regex after stack
 
                 }
                 body = theStack+afterStack;
-                //console.log(body)
+
             }else{
                 if (/\.gain\([^]*]\)/.test(body)){
                     body = body.replace(/\.gain\([^]*]\)/, `.gain(${volume})`);
                 }else{
                     body = body + `.gain(${volume})`; // I think there may be whitespace here that needs trimming: TEST
-                    //console.log(body)
+
                 }
 
             }
