@@ -12,7 +12,7 @@ export const SongTextParser = (songText) => {
                 if (currentInstrumentBlock) {
                     instrumentBlocks.push(currentInstrumentBlock);
                     //console.log("current Block in parser")
-                    //console.log(currentInstrumentBlock)
+                    console.log(currentInstrumentBlock)
                 }
                 //console.log("heres the problem in parser")
                 currentInstrumentBlock = {name: title[0], codeBlock: ""}

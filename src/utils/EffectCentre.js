@@ -19,17 +19,16 @@ export const EffectCentre  = () => {
                 }
                 const theStack = body.slice(0, stackEnd + 1);
                 let afterStack = body.slice(stackEnd + 1);
-                if (/\.gain\([^]*]\)/.test(afterStack)){
-                    afterStack = afterStack.replace(/\.gain\([^]*\)/, `.gain(${volume})`);
+                if (/\.gain\([\s\S]*?\)/.test(afterStack)){
+                    afterStack = afterStack.replace(/\.gain\([\s\S]*?\)/, `.gain(${volume})`);
                 }else{
-                    afterStack = `.gain(${volume})` + afterStack ;// putting gain before the stack accounts for if there is weird markup not caught by regex after stack
-
+                    afterStack = `.gain(${volume})` + afterStack ;
                 }
                 body = theStack+afterStack;
 
             }else{
-                if (/\.gain\([^]*]\)/.test(body)){
-                    body = body.replace(/\.gain\([^]*]\)/, `.gain(${volume})`);
+                if (/\.gain\([\s\S]*?\)/.test(body)){
+                    body = body.replace(/\.gain\([\s\S]*?\)/, `.gain(${volume})`);
                 }else{
                     body = body + `.gain(${volume})`; // I think there may be whitespace here that needs trimming: TEST
 
