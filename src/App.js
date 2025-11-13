@@ -75,6 +75,8 @@ export default function StrudelDemo() {
 
     const [isPLaying, setIsPLaying] = useState(false);
 
+    const [instrumentBlocks, setInstrumentBlocks] = useState(false);
+
     const hasRun = useRef(false);
 
     const handlePlay = () => {
@@ -85,10 +87,13 @@ export default function StrudelDemo() {
         globalEditor.stop();
         setIsPLaying(false);
     }
+    const handleMute = () => {
+
+    }
     const handleVolumeChange = (Volume) => {
         console.log(`volume: ${Volume}`)
-        let instrumentBlocks = parser.getInstrumentBlocks(songText)
-        instrumentBlocks = effectController.changeVolume(instrumentBlocks, Volume)
+
+        setInstrumentBlocks(effectController.changeVolume(instrumentBlocks, Volume))
         setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
         if(isPLaying) globalEditor.evaluate();
     }
@@ -96,6 +101,8 @@ export default function StrudelDemo() {
     const parser = SongTextParser();
 
     const [songText, setSongText] = useState(stranger_tune)
+
+
 
     useEffect(() => {
 
@@ -134,6 +141,7 @@ export default function StrudelDemo() {
 
     }
     //console.log(songText)
+    setInstrumentBlocks(parser.getInstrumentBlocks(songText))
     globalEditor.setCode(songText)
 }, [songText]);
 
