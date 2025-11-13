@@ -163,7 +163,7 @@ return (
                     <div className="col-md-4">
 
                             <br />
-                            <StandardControlArea onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
+                            <StandardControlArea instrumentBlocks={instrumentBlocks} onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
                     </div>
 
                 </div>

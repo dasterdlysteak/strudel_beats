@@ -5,7 +5,7 @@ import DJ_Controls from "./DJ_Controls";
 import Checkbox from "./Checkbox";
 
 
-function StandardControlArea({onPlay, onStop, onVolumeChange, isPlaying}){
+function StandardControlArea({onPlay, onStop, onVolumeChange, isPlaying , instrumentBlocks}){
     return (
         <div className="card bg-secondary bg-opacity-75 p-3 mb-3">
 
@@ -16,9 +16,11 @@ function StandardControlArea({onPlay, onStop, onVolumeChange, isPlaying}){
 
             </div>
             <div className="mt-3 text text-center">
-                <Checkbox label={"in 1"}/>
-                <Checkbox label={"in 2"}/>
-                <Checkbox label={"in 3"}/>
+                {instrumentBlocks && instrumentBlocks.map((block)=>(
+                    <Checkbox label={block.name}/>
+                ))}
+
+
             </div>
             <div className="mt-3">
                 <CPM_control />
