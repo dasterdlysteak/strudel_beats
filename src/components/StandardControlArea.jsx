@@ -5,7 +5,7 @@ import DJ_Controls from "./DJ_Controls";
 import Checkbox from "./Checkbox";
 
 
-function StandardControlArea({onToggle, onPlay, onStop, onVolumeChange, isPlaying , instrumentBlocks}){
+function StandardControlArea({toggled, onToggle, onPlay, onStop, onVolumeChange, isPlaying , instrumentBlocks}){
     return (
         <div className="card bg-secondary bg-opacity-75 p-3 mb-3">
 
@@ -18,7 +18,7 @@ function StandardControlArea({onToggle, onPlay, onStop, onVolumeChange, isPlayin
             </div>
             <div className="mt-3 text text-center">
                 {instrumentBlocks && instrumentBlocks.map((block)=>(
-                    <Checkbox onToggle={onToggle}  label={block.name} checked={block.toggled}/>
+                    <Checkbox toggled={toggled} onToggle={onToggle}  label={block.name} checked={toggled.includes(block.name)}/>
                 ))}
             </div>
             <div className="mt-3">

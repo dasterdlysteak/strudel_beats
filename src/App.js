@@ -158,10 +158,10 @@ export default function StrudelDemo() {
             });
             
         document.getElementById('proc').value = stranger_tune
-
+        setInstrumentBlocks(parser.getInstrumentBlocks(songText))
     }
     //console.log(songText)
-    setInstrumentBlocks(parser.getInstrumentBlocks(songText))
+
     globalEditor.setCode(songText)
         console.log(toggled)
 }, [songText]);
@@ -184,7 +184,7 @@ return (
                     <div className="col-md-4">
 
                             <br />
-                            <StandardControlArea onToggle={(event) => handleToggle(event.target.value)} instrumentBlocks={instrumentBlocks} onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
+                            <StandardControlArea toggled={toggled} onToggle={(event) => handleToggle(event.target.value)} instrumentBlocks={instrumentBlocks} onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
                     </div>
 
                 </div>
