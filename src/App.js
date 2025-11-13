@@ -75,6 +75,8 @@ export default function StrudelDemo() {
 
     const [isPLaying, setIsPLaying] = useState(false);
 
+    const [toggled, setToggled] = useState([]);
+
     const [instrumentBlocks, setInstrumentBlocks] = useState(false);
 
     const hasRun = useRef(false);
@@ -87,9 +89,16 @@ export default function StrudelDemo() {
         globalEditor.stop();
         setIsPLaying(false);
     }
-    const handleMute = () => {
+    const handleToggle = (blockName) => {
+        setToggled((prev) => {
+            if (prev.includes(blockName)) {
+                return prev.filter((name) => name !== blockName);
+            } else {
+                return [...prev, blockName];
+            }
+        });
+    };
 
-    }
     const handleVolumeChange = (Volume) => {
         console.log(`volume: ${Volume}`)
 
@@ -102,7 +111,18 @@ export default function StrudelDemo() {
 
     const [songText, setSongText] = useState(stranger_tune)
 
-
+    useEffect(() => {
+        if(instrumentBlocks && instrumentBlocks.length > 0){
+            instrumentBlocks.map((instrumentBlock) => {
+                const isToggled = toggled.includes(instrumentBlock.name);
+                if(isToggled){
+                    instrumentBlock.toggled = true;
+                }else{
+                    instrumentBlock.toggled = false;
+                }
+            })
+        }
+    }, [instrumentBlocks, toggled]);
 
     useEffect(() => {
 
@@ -143,6 +163,7 @@ export default function StrudelDemo() {
     //console.log(songText)
     setInstrumentBlocks(parser.getInstrumentBlocks(songText))
     globalEditor.setCode(songText)
+        console.log(toggled)
 }, [songText]);
 
 
@@ -163,7 +184,7 @@ return (
                     <div className="col-md-4">
 
                             <br />
-                            <StandardControlArea instrumentBlocks={instrumentBlocks} onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
+                            <StandardControlArea onToggle={(event) => handleToggle(event.target.value)} instrumentBlocks={instrumentBlocks} onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
                     </div>
 
                 </div>

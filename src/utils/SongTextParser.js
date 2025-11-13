@@ -15,7 +15,7 @@ export const SongTextParser = (songText) => {
                     console.log(currentInstrumentBlock)
                 }
                 //console.log("heres the problem in parser")
-                currentInstrumentBlock = {name: title[0], codeBlock: "", toggled: true}
+                currentInstrumentBlock = {name: title[0], codeBlock: "", toggled: false}
 
 
             } else if (currentInstrumentBlock) {
