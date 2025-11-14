@@ -112,6 +112,10 @@ export default function StrudelDemo() {
     const [songText, setSongText] = useState(stranger_tune)
 
     useEffect(() => {
+        setInstrumentBlocks(parser.getInstrumentBlocks(songText))
+    }, [songText]);
+
+    useEffect(() => {
         if(instrumentBlocks && instrumentBlocks.length > 0){
             instrumentBlocks.map((instrumentBlock) => {
                 const isToggled = toggled.includes(instrumentBlock.name);
@@ -122,7 +126,7 @@ export default function StrudelDemo() {
                 }
             })
         }
-    }, [instrumentBlocks, toggled]);
+    }, [instrumentBlocks, toggled, songText]);
 
     useEffect(() => {
 
@@ -158,7 +162,7 @@ export default function StrudelDemo() {
             });
             
         document.getElementById('proc').value = stranger_tune
-        setInstrumentBlocks(parser.getInstrumentBlocks(songText))
+        //setInstrumentBlocks(parser.getInstrumentBlocks(songText))
     }
     //console.log(songText)
 

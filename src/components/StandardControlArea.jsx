@@ -16,7 +16,7 @@ function StandardControlArea({toggled, onToggle, onPlay, onStop, onVolumeChange,
 
 
             </div>
-            <div className="mt-3 text text-center">
+            <div className="d-flex justify-content-center">
                 {instrumentBlocks && instrumentBlocks.map((block)=>(
                     <Checkbox toggled={toggled} onToggle={onToggle}  label={block.name} checked={toggled.includes(block.name)}/>
                 ))}
