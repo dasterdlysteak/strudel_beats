@@ -104,7 +104,6 @@ export default function StrudelDemo() {
 
         setInstrumentBlocks(effectController.changeVolume(instrumentBlocks, Volume))
         setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
-        if(isPLaying) globalEditor.evaluate();
     }
 
     const parser = SongTextParser();
@@ -167,7 +166,9 @@ export default function StrudelDemo() {
     //console.log(songText)
 
     globalEditor.setCode(songText)
-        console.log(toggled)
+    if(isPLaying) globalEditor.evaluate();
+
+    console.log(toggled)
 }, [songText]);
 
 
