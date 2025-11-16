@@ -110,6 +110,7 @@ export default function StrudelDemo() {
     const handleCPSChange = (bpm) => {
         const updatedCPS = effectController.changeBPM(bpm, cps)
         setCPS(updatedCPS);
+        setSongText(parser.replaceCPS(updatedCPS, songText));
     }
 
     const handleVolumeChange = (Volume) => {

@@ -48,7 +48,7 @@ export const SongTextParser = (songText) => {
     }
 
     function getCPS(songText) {
-        const regex = /setcps\(\s*(\d+)\s*\/\s*(\d+)\s*\/\s*(\d+)\s*\)/;
+        const regex = /setcps\(\s*(\d*)\s*\/\s*(\d+)\s*\/\s*(\d+)\s*\)/;
         const match = songText.match(regex);
         if (!match) return "no match!";
 
@@ -60,7 +60,7 @@ export const SongTextParser = (songText) => {
     }
 
     function replaceCPS(cps, songText) {
-        const regex = /setcps\(\s*(\d+)\s*\/\s*(\d+)\s*\/\s*(\d+)\s*\)/;
+        const regex = /setcps\(\s*(\d*)\s*\/\s*(\d+)\s*\/\s*(\d+)\s*\)/;
         const match = songText.match(regex);
         if (match){
             return songText.replace(
