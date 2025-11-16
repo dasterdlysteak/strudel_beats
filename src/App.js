@@ -79,6 +79,8 @@ export default function StrudelDemo() {
 
     const [instrumentBlocks, setInstrumentBlocks] = useState([]);
 
+    const [cps, setCPS] = useState({});
+
     const hasRun = useRef(false);
 
     const handlePlay = () => {
@@ -105,6 +107,11 @@ export default function StrudelDemo() {
 
     };
 
+    const handleCPSChange = (bpm) => {
+        const updatedCPS = effectController.changeBPM(bpm, cps)
+        setCPS(updatedCPS);
+    }
+
     const handleVolumeChange = (Volume) => {
         console.log(`volume: ${Volume}`)
 
@@ -129,6 +136,9 @@ export default function StrudelDemo() {
     const [songText, setSongText] = useState(stranger_tune)
 
     useEffect(() => {
+        const cps = parser.getCPS(songText)
+        console.log('cps', cps)
+        setCPS(cps)
         if(!instrumentBlocks){
             setInstrumentBlocks(parser.getInstrumentBlocks(songText))
         }
@@ -214,7 +224,7 @@ return (
                     <div className="col-md-4">
 
                             <br />
-                            <StandardControlArea toggled={toggled} onToggle={(event) => handleToggle(event.target.value)} instrumentBlocks={instrumentBlocks} onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
+                            <StandardControlArea toggled={toggled} onToggle={(event) => handleToggle(event.target.value)} instrumentBlocks={instrumentBlocks} onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying} onBPMChange={(e) => handleCPSChange(e.target.value)} bpm={cps.bpm}  />
                     </div>
 
                 </div>

@@ -1,3 +1,5 @@
+import {bps} from "@strudel/core";
+
 export const EffectCentre  = () => {
     function changeVolume (InstrumentBlocks, volume) {
         InstrumentBlocks.forEach(instrumentBlock => {
@@ -53,5 +55,15 @@ export const EffectCentre  = () => {
 
     }
 
-    return {changeVolume, muteInstrumentBlocks};
+    function changeBPM(bpm, cps) {
+        console.log("BPM: ")
+        console.log(bpm)
+        const newCPS = { ...cps };
+        newCPS.bpm = bpm;
+        console.log("CPS: ")
+        console.log(newCPS);
+        return newCPS
+    }
+
+    return {changeVolume, muteInstrumentBlocks, changeBPM};
 }

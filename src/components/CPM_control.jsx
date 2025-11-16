@@ -1,8 +1,8 @@
-function CPM_control(){
+function CPM_control({bpm, onBPMChange}){
     return(
         <div className="input-group mb-3">
-            <span className="input-group-text" id="cpm_label">setCPM</span>
-            <input type="text" className="form-control" placeholder="120" aria-label="cpm"
+            <span className="input-group-text" id="bpm_label">setBPM</span>
+            <input type="text" className="form-control" placeholder="bpm" aria-label="cpm" onChange={onBPMChange} value={bpm}
                    aria-describedby="cpm_label"/>
         </div>
     )

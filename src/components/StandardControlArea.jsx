@@ -5,7 +5,7 @@ import DJ_Controls from "./DJ_Controls";
 import Checkbox from "./Checkbox";
 
 
-function StandardControlArea({toggled, onToggle, onPlay, onStop, onVolumeChange, isPlaying , instrumentBlocks}){
+function StandardControlArea({toggled, onToggle, onPlay, onStop, onVolumeChange, isPlaying , instrumentBlocks, onBPMChange, bpm}){
     return (
         <div className="card bg-secondary bg-opacity-75 p-3 mb-3">
 
@@ -22,7 +22,7 @@ function StandardControlArea({toggled, onToggle, onPlay, onStop, onVolumeChange,
                 ))}
             </div>
             <div className="mt-3">
-                <CPM_control />
+                <CPM_control onBPMChange={onBPMChange} bpm={bpm}/>
             </div>
         </div>
     )

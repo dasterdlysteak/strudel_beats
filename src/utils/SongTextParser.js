@@ -15,7 +15,7 @@ export const SongTextParser = (songText) => {
                     //console.log(currentInstrumentBlock)
                 }
                 //console.log("heres the problem in parser")
-                currentInstrumentBlock = {name: title[0], codeBlock: "", toggled: false}
+                currentInstrumentBlock = {name: title[0], codeBlock: "", toggled: true}
 
 
             } else if (currentInstrumentBlock) {
@@ -47,8 +47,33 @@ export const SongTextParser = (songText) => {
         return songText;
     }
 
+    function getCPS(songText) {
+        const regex = /setcps\(\s*(\d+)\s*\/\s*(\d+)\s*\/\s*(\d+)\s*\)/;
+        const match = songText.match(regex);
+        if (!match) return "no match!";
+
+        return {
+            bpm: match[1],
+            subdivision: match[2],
+            beats: match[3]
+        };
+    }
+
+    function replaceCPS(cps, songText) {
+        const regex = /setcps\(\s*(\d+)\s*\/\s*(\d+)\s*\/\s*(\d+)\s*\)/;
+        const match = songText.match(regex);
+        if (match){
+            return songText.replace(
+                regex, `setcps(${cps.bpm}/${cps.subdivision}/${cps.beats})`
+            );
+        }
+    }
+
+
     return {
         getInstrumentBlocks,
-        replaceInstrumentBlocks
+        replaceInstrumentBlocks,
+        getCPS,
+        replaceCPS
     };
 }
