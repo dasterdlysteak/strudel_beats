@@ -71,5 +71,51 @@ export const EffectCentre  = () => {
 
     }
 
-    return {changeVolume, muteInstrumentBlocks, changeBPM};
+    function processEffect (InstrumentBlocks, value, effect) {
+        InstrumentBlocks.forEach(instrumentBlock => {
+            if (!instrumentBlock.toggled){
+                return;
+            }
+            let body = instrumentBlock.codeBlock
+            let isStack = (/stack\s*\(/.test(body))
+            const regex = new RegExp(`\\.${effect}\\([\\s\\S]*?\\)`, "g");
+            if (isStack){
+                let stackDepth = 0;
+                let stackEnd = 0;
+                for(let i = 0; i < body.length; i++){
+                    if (body[i] == '('){
+                        stackDepth++;
+                    }else if (body[i] == ')'){
+                        stackDepth--;
+                        if (stackDepth === 0){
+                            stackEnd = i;
+                            break
+                        }
+                    }
+                }
+                const theStack = body.slice(0, stackEnd + 1);
+                let afterStack = body.slice(stackEnd + 1);
+
+                if (regex.test(afterStack)){
+                    afterStack = afterStack.replace(regex, `.${effect}(${value})`);
+                }else{
+                    afterStack = `.${effect}(${value})` + afterStack ;
+                }
+                body = theStack+afterStack;
+
+            }else{
+                if (regex.test(body)){
+                    body = body.replace(regex, `.${effect}(${value})`);
+                }else{
+                    body = body + `.${effect}(${value})`;
+
+                }
+
+            }
+            instrumentBlock.codeBlock = body
+        })
+        return InstrumentBlocks;
+    }
+
+    return {changeVolume, muteInstrumentBlocks, changeBPM, processEffect };
 }

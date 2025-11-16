@@ -116,7 +116,8 @@ export default function StrudelDemo() {
     const handleVolumeChange = (Volume) => {
         console.log(`volume: ${Volume}`)
 
-        setInstrumentBlocks(effectController.changeVolume(instrumentBlocks, Volume))
+        //setInstrumentBlocks(effectController.changeVolume(instrumentBlocks, Volume))
+        setInstrumentBlocks(effectController.processEffect(instrumentBlocks, Volume, "gain"))
         setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
     }
 
@@ -224,8 +225,8 @@ return (
                     </div>
                     <div className="col-md-4">
 
-                            <br />
-                            <StandardControlArea onBPMChange={(e) => handleCPSChange(e.target.value)} bpm={cps.bpm}   onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
+                        <br />
+                        <StandardControlArea onBPMChange={(e) => handleCPSChange(e.target.value)} bpm={cps.bpm}   onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
                     </div>
 
                 </div>
