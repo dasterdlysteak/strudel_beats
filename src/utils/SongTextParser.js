@@ -12,7 +12,7 @@ export const SongTextParser = (songText) => {
                 if (currentInstrumentBlock) {
                     instrumentBlocks.push(currentInstrumentBlock);
                     //console.log("current Block in parser")
-                    console.log(currentInstrumentBlock)
+                    //console.log(currentInstrumentBlock)
                 }
                 //console.log("heres the problem in parser")
                 currentInstrumentBlock = {name: title[0], codeBlock: "", toggled: false}
@@ -33,15 +33,17 @@ export const SongTextParser = (songText) => {
     function replaceInstrumentBlocks(instrumentBlocks, songText) {
         instrumentBlocks.forEach(instrumentBlock => {
             const name = instrumentBlock.name;
+            const tag = name.replace(/^_+/,"");
+
             const codeBlock = instrumentBlock.codeBlock;
             //console.log(codeBlock);
-            const regex = new RegExp(`(^\\s*${name}\\s*\\n)([\\s\\S]*?)(?=^\\s*[A-Za-z0-9_]+:\\s*$|^\\s*\\/\\/|\\Z)`, "gm");
+            const regex = new RegExp(`(^\\s*_*${tag}\\s*\\n)([\\s\\S]*?)(?=^\\s*[A-Za-z0-9_]+:\\s*$|^\\s*\\/\\/|\\Z)`, "gm");
             const match = songText.match(regex);
             if (match) {
                 songText = songText.replace(regex, `${name}\n${codeBlock}\n`);
             }
         })
-        //console.log(songText)
+        console.log(songText)
         return songText;
     }
 

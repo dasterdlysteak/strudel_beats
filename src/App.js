@@ -77,7 +77,7 @@ export default function StrudelDemo() {
 
     const [toggled, setToggled] = useState([]);
 
-    const [instrumentBlocks, setInstrumentBlocks] = useState(false);
+    const [instrumentBlocks, setInstrumentBlocks] = useState([]);
 
     const hasRun = useRef(false);
 
@@ -90,13 +90,19 @@ export default function StrudelDemo() {
         setIsPLaying(false);
     }
     const handleToggle = (blockName) => {
-        setToggled((prev) => {
-            if (prev.includes(blockName)) {
-                return prev.filter((name) => name !== blockName);
-            } else {
-                return [...prev, blockName];
-            }
+        setInstrumentBlocks(prevBlocks => {
+            const updated = prevBlocks.map(block =>
+                block.name === blockName
+                    ? { ...block, toggled: !block.toggled }
+                    : block
+            );
+
+            console.log("Toggled", blockName);
+            console.log("after toggling instrumentBlocks:", updated);
+
+            return updated;
         });
+
     };
 
     const handleVolumeChange = (Volume) => {
@@ -106,26 +112,44 @@ export default function StrudelDemo() {
         setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
     }
 
+    const handleMute = () => {
+        console.log('mute');
+        console.log(`instrument blocks before mute = `)
+        console.log(instrumentBlocks);
+        setInstrumentBlocks(effectController.muteInstrumentBlocks(instrumentBlocks))
+        console.log(`instrument blocks after mute =`)
+        console.log(instrumentBlocks);
+        setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
+        console.log(songText);
+    }
+
     const parser = SongTextParser();
 
     const [songText, setSongText] = useState(stranger_tune)
 
     useEffect(() => {
-        setInstrumentBlocks(parser.getInstrumentBlocks(songText))
+        if(!instrumentBlocks){
+            setInstrumentBlocks(parser.getInstrumentBlocks(songText))
+        }
+        else{
+            const currentInstrumentBlocks = parser.getInstrumentBlocks(songText);
+            const merged = currentInstrumentBlocks.map(currentInstrumentBlock => {
+                const normalisedName = currentInstrumentBlock.name.replace(/^_+/, "");
+                const oldBlock = instrumentBlocks.find(
+                    b => b.name.replace(/^_+/, "") === normalisedName
+                );
+                return oldBlock ? oldBlock : currentInstrumentBlock;
+            });
+
+            setInstrumentBlocks(merged);
+        }
+
+
+
+
     }, [songText]);
 
-    useEffect(() => {
-        if(instrumentBlocks && instrumentBlocks.length > 0){
-            instrumentBlocks.map((instrumentBlock) => {
-                const isToggled = toggled.includes(instrumentBlock.name);
-                if(isToggled){
-                    instrumentBlock.toggled = true;
-                }else{
-                    instrumentBlock.toggled = false;
-                }
-            })
-        }
-    }, [instrumentBlocks, toggled, songText]);
+
 
     useEffect(() => {
 
@@ -199,7 +223,7 @@ return (
                         <div className={"rounded"} id="output" />
                     </div>
                     <div className="col-md-4">
-                        <DJSliders/>
+                        <DJSliders onMute={handleMute}/>
                     </div>
                 </div>
             </div>

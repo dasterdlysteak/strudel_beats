@@ -1,6 +1,6 @@
 import VerticalSlider from "./VerticalSlider";
 
-function DJSliders() {
+function DJSliders({onMute}) {
     return(
         <div className="container bg-secondary bg-opacity-75 text-light p-4 rounded">
             <h4 className="text-center mb-4">Mixer Controls</h4>
@@ -15,8 +15,8 @@ function DJSliders() {
 
             <div className="row">
                 <div className="col mt-4 text-center">
-                    <button type="button" className="btn btn-primary">
-                        Reverb
+                    <button type="button" className="btn btn-primary" onClick={onMute}>
+                        Mute
                     </button>
                 </div>
                 <div className="col mt-4 text-center">

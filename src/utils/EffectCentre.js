@@ -39,5 +39,19 @@ export const EffectCentre  = () => {
         })
         return InstrumentBlocks;
     }
-    return {changeVolume};
+
+    function muteInstrumentBlocks(instrumentBlocks) {
+        return instrumentBlocks.map((instrumentBlock) => {
+            let name = instrumentBlock.name
+            if (instrumentBlock.toggled && name.charAt(0) != '_') {
+                name = "_" + name;
+            }else if (!instrumentBlock.toggled && name.charAt(0) == '_') {
+                name = name.slice(1);
+            }
+            return { ...instrumentBlock, name: name }
+        })
+
+    }
+
+    return {changeVolume, muteInstrumentBlocks};
 }
