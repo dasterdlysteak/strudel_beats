@@ -58,11 +58,17 @@ export const EffectCentre  = () => {
     function changeBPM(bpm, cps) {
         console.log("BPM: ")
         console.log(bpm)
-        const newCPS = { ...cps };
-        newCPS.bpm = bpm;
-        console.log("CPS: ")
-        console.log(newCPS);
-        return newCPS
+        if(bpm != "" && bpm != null && isNaN(parseInt(bpm ))){
+            alert("Please enter a number")
+            return cps
+        }else{
+            const newCPS = { ...cps };
+            newCPS.bpm = bpm;
+            console.log("CPS: ")
+            console.log(newCPS);
+            return newCPS
+        }
+
     }
 
     return {changeVolume, muteInstrumentBlocks, changeBPM};

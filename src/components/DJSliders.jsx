@@ -1,15 +1,19 @@
 import VerticalSlider from "./VerticalSlider";
+import Checkbox from "./Checkbox";
 
-function DJSliders({onMute}) {
+function DJSliders({instrumentBlocks, toggled, onToggle,onMute}) {
     return(
         <div className="container bg-secondary bg-opacity-75 text-light p-4 rounded">
-            <h4 className="text-center mb-4">Mixer Controls</h4>
-
+            <h4 className="text-center">Mixer Controls</h4>
+            <div className="d-flex justify-content-center mb-3">
+                {instrumentBlocks && instrumentBlocks.map((block)=>(
+                    <Checkbox key={block.name} toggled={toggled} onToggle={onToggle}  label={block.name} checked={block.toggled}/>
+                ))}
+            </div>
             <div className="d-flex justify-content-around rounded p-3 bg-dark">
                 <VerticalSlider label={"CH1"}/>
                 <VerticalSlider label={"CH2"}/>
                 <VerticalSlider label={"CH3"}/>
-                <VerticalSlider label={"CH4"}/>
 
             </div>
 
@@ -24,6 +28,7 @@ function DJSliders({onMute}) {
                         Echo
                     </button>
                 </div>
+
             </div>
         </div>
         )

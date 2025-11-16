@@ -5,7 +5,7 @@ import DJ_Controls from "./DJ_Controls";
 import Checkbox from "./Checkbox";
 
 
-function StandardControlArea({toggled, onToggle, onPlay, onStop, onVolumeChange, isPlaying , instrumentBlocks, onBPMChange, bpm}){
+function StandardControlArea({ onPlay, onStop, onVolumeChange, isPlaying, onBPMChange, bpm}){
     return (
         <div className="card bg-secondary bg-opacity-75 p-3 mb-3">
 
@@ -16,11 +16,7 @@ function StandardControlArea({toggled, onToggle, onPlay, onStop, onVolumeChange,
 
 
             </div>
-            <div className="d-flex justify-content-center">
-                {instrumentBlocks && instrumentBlocks.map((block)=>(
-                    <Checkbox key={block.name} toggled={toggled} onToggle={onToggle}  label={block.name} checked={block.toggled}/>
-                ))}
-            </div>
+
             <div className="mt-3">
                 <CPM_control onBPMChange={onBPMChange} bpm={bpm}/>
             </div>

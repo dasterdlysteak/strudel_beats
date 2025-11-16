@@ -225,7 +225,7 @@ return (
                     <div className="col-md-4">
 
                             <br />
-                            <StandardControlArea toggled={toggled} onToggle={(event) => handleToggle(event.target.value)} instrumentBlocks={instrumentBlocks} onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying} onBPMChange={(e) => handleCPSChange(e.target.value)} bpm={cps.bpm}  />
+                            <StandardControlArea onBPMChange={(e) => handleCPSChange(e.target.value)} bpm={cps.bpm}   onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
                     </div>
 
                 </div>
@@ -235,7 +235,7 @@ return (
                         <div className={"rounded"} id="output" />
                     </div>
                     <div className="col-md-4">
-                        <DJSliders onMute={handleMute}/>
+                        <DJSliders onMute={handleMute}  instrumentBlocks={instrumentBlocks} toggled={toggled} onToggle={(event) => handleToggle(event.target.value)}/>
                     </div>
                 </div>
             </div>
