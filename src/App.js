@@ -116,10 +116,11 @@ export default function StrudelDemo() {
         console.log('mute');
         console.log(`instrument blocks before mute = `)
         console.log(instrumentBlocks);
-        setInstrumentBlocks(effectController.muteInstrumentBlocks(instrumentBlocks))
+        const mutedBlocks = effectController.muteInstrumentBlocks(instrumentBlocks);
+        setInstrumentBlocks(mutedBlocks);
         console.log(`instrument blocks after mute =`)
         console.log(instrumentBlocks);
-        setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
+        setSongText(parser.replaceInstrumentBlocks(mutedBlocks, songText))
         console.log(songText);
     }
 
