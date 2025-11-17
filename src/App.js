@@ -102,7 +102,7 @@ export default function StrudelDemo() {
 
     const handlePitchChange = (pitch) => {
         console.log(`pitch: ${pitch}`)
-        setInstrumentBlocks(effectController.processEffect(instrumentBlocks, lows, "transpose"))
+        setInstrumentBlocks(effectController.processEffect(instrumentBlocks, pitch, "transpose"))
         setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
     }
 
@@ -137,7 +137,7 @@ export default function StrudelDemo() {
         download.href = url;
         download.download = filename;
         download.click();
-        console.log("this has not worked?")
+
     }
 
     const handleLoad = async (file) => {
