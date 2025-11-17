@@ -1,4 +1,4 @@
-function VerticalSlider({label, onEffectTrigger, min=0, max=1}, step=0.05, defaultValue= 0) {
+function VerticalSlider({label, onEffectTrigger, min=0, max=1, step=0.05, defaultValue= 0}) {
     return(
         <div className="d-flex flex-column align-items-center"
              style={{ height: "220px", width: "60px" }}>

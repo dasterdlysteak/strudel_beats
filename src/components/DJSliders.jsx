@@ -1,7 +1,7 @@
 import VerticalSlider from "./VerticalSlider";
 import Checkbox from "./Checkbox";
 
-function DJSliders({instrumentBlocks, toggled, onToggle,onMute, onHighsChange, onLowsChange, onReverbChange, onSave, onLoad}) {
+function DJSliders({instrumentBlocks, toggled, onToggle,onMute, onHighsChange, onPitchChange, onReverbChange, onSave, onLoad}) {
     return(
         <div className="container bg-secondary bg-opacity-75 text-light p-4 rounded">
             <h4 className="text-center">Mixer Controls</h4>
@@ -11,8 +11,8 @@ function DJSliders({instrumentBlocks, toggled, onToggle,onMute, onHighsChange, o
                 ))}
             </div>
             <div className="d-flex justify-content-around rounded p-3 bg-dark">
-                <VerticalSlider label={"Highs"} onEffectTrigger={onHighsChange} min={200} max={20000} step={1000} defaultValue={12000}/>
-                <VerticalSlider label={"Lows"} onEffectTrigger={onLowsChange} min={20} max={500} step={20} defaultValue={80}/>
+                <VerticalSlider label={"Highs"} onEffectTrigger={onHighsChange} min={200} max={1000} step={50}/>
+                <VerticalSlider label={"Pitch"} onEffectTrigger={onPitchChange} min={-12} max={12} step={1} defaultValue={0}/>
                 <VerticalSlider label={"Reverb"} onEffectTrigger={onReverbChange}/>
 
             </div>

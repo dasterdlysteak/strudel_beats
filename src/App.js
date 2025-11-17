@@ -100,9 +100,9 @@ export default function StrudelDemo() {
         setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
     }
 
-    const handleLowsChange = (lows) => {
-        console.log(`lows: ${lows}`)
-        setInstrumentBlocks(effectController.processEffect(instrumentBlocks, lows, "lpf"))
+    const handlePitchChange = (pitch) => {
+        console.log(`pitch: ${pitch}`)
+        setInstrumentBlocks(effectController.processEffect(instrumentBlocks, lows, "transpose"))
         setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
     }
 
@@ -289,7 +289,7 @@ return (
                         <div className={"rounded"} id="output" />
                     </div>
                     <div className="col-md-4">
-                        <DJSliders onLoad={(event) => handleLoad(event.target.files[0])} onSave={handleSave} onMute={handleMute}  instrumentBlocks={instrumentBlocks} toggled={toggled} onToggle={(event) => handleToggle(event.target.value)} onHighsChange={(e) => handleHighsChange(e.target.value) } onLowsChange={(e) => handleLowsChange(e.target.value) } onReverbChange={(e) => handleReverbChange(e.target.value) }/>
+                        <DJSliders onLoad={(event) => handleLoad(event.target.files[0])} onSave={handleSave} onMute={handleMute}  instrumentBlocks={instrumentBlocks} toggled={toggled} onToggle={(event) => handleToggle(event.target.value)} onHighsChange={(e) => handleHighsChange(e.target.value) } onPitchChange={(e) => handlePitchChange(e.target.value) } onReverbChange={(e) => handleReverbChange(e.target.value) }/>
                     </div>
 
                 </div>
