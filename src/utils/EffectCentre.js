@@ -58,8 +58,8 @@ export const EffectCentre  = () => {
     function changeBPM(bpm, cps) {
         console.log("BPM: ")
         console.log(bpm)
-        if(bpm != "" && bpm != null && isNaN(parseInt(bpm ))){
-            alert("Please enter a number")
+        if(bpm != "" && bpm != null && isNaN(Number(bpm ))){
+            alert("Please only enter numbers!")
             return cps
         }else{
             const newCPS = { ...cps };
