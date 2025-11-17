@@ -11,8 +11,8 @@ function DJSliders({instrumentBlocks, toggled, onToggle,onMute, onHighsChange, o
                 ))}
             </div>
             <div className="d-flex justify-content-around rounded p-3 bg-dark">
-                <VerticalSlider label={"Highs"} onEffectTrigger={onHighsChange} min={200} max={5000} step={50}/>
-                <VerticalSlider label={"Lows"} onEffectTrigger={onLowsChange} min={20} max={2000} step={20}/>
+                <VerticalSlider label={"Highs"} onEffectTrigger={onHighsChange} min={200} max={20000} step={1000} defaultValue={12000}/>
+                <VerticalSlider label={"Lows"} onEffectTrigger={onLowsChange} min={20} max={500} step={20} defaultValue={80}/>
                 <VerticalSlider label={"Reverb"} onEffectTrigger={onReverbChange}/>
 
             </div>

@@ -19,46 +19,17 @@ import {EffectCentre} from "./utils/EffectCentre";
 import DJSliders from "./components/DJSliders";
 
 
+
+import * as d3 from "d3";
+
+
 let globalEditor = null;
 
 const handleD3Data = (event) => {
+
     console.log(event.detail);
 };
 
-// export function SetupButtons() {
-//
-//     document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
-//     document.getElementById('stop').addEventListener('click', () => globalEditor.stop());
-//     document.getElementById('process').addEventListener('click', () => {
-//         Proc()
-//     }
-//     )
-//     document.getElementById('process_play').addEventListener('click', () => {
-//         if (globalEditor != null) {
-//             Proc()
-//             globalEditor.evaluate()
-//         }
-//     }
-//     )
-// }
-
-
-
-// export function ProcAndPlay() {
-//     if (globalEditor != null && globalEditor.repl.state.started == true) {
-//         console.log(globalEditor)
-//         Proc()
-//         globalEditor.evaluate();
-//     }
-// }
-
-// export function Proc() {
-//
-//     let proc_text = document.getElementById('proc').value
-//     let proc_text_replaced = proc_text.replaceAll('<p1_Radio>', ProcessText);
-//     ProcessText(proc_text);
-//     globalEditor.setCode(proc_text_replaced)
-// }
 
 export function ProcessText(match, ...args) {
 
@@ -81,6 +52,8 @@ export default function StrudelDemo() {
     const [instrumentBlocks, setInstrumentBlocks] = useState([]);
 
     const [cps, setCPS] = useState({});
+
+    const [globalVolume, setGlobalVolume] = useState(50);
 
     const hasRun = useRef(false);
 
@@ -116,32 +89,25 @@ export default function StrudelDemo() {
 
     const handleVolumeChange = (Volume) => {
         console.log(`volume: ${Volume}`)
-
+        setGlobalVolume(Volume * 100);
         setInstrumentBlocks(effectController.changeVolume(instrumentBlocks, Volume))
-        //setInstrumentBlocks(effectController.processEffect(instrumentBlocks, Volume, "gain"))
         setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
     }
 
     const handleReverbChange = (reverb) => {
         console.log(`reverb: ${reverb}`)
-
-        //setInstrumentBlocks(effectController.changeVolume(instrumentBlocks, Volume))
         setInstrumentBlocks(effectController.processEffect(instrumentBlocks, reverb, "room"))
         setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
     }
 
     const handleLowsChange = (lows) => {
         console.log(`lows: ${lows}`)
-
-        //setInstrumentBlocks(effectController.changeVolume(instrumentBlocks, Volume))
         setInstrumentBlocks(effectController.processEffect(instrumentBlocks, lows, "lpf"))
         setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
     }
 
     const handleHighsChange = (highs) => {
         console.log(`highs: ${highs}`)
-
-        //setInstrumentBlocks(effectController.changeVolume(instrumentBlocks, Volume))
         setInstrumentBlocks(effectController.processEffect(instrumentBlocks, highs, "hpf"))
         setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
     }
@@ -156,6 +122,7 @@ export default function StrudelDemo() {
         console.log(instrumentBlocks);
         setSongText(parser.replaceInstrumentBlocks(mutedBlocks, songText))
         console.log(songText);
+
     }
 
     const handleSave = () => {
@@ -204,15 +171,10 @@ export default function StrudelDemo() {
                 );
                 return oldBlock ? oldBlock : currentInstrumentBlock;
             });
-
             setInstrumentBlocks(merged);
         }
 
-
-
-
     }, [songText]);
-
 
 
     useEffect(() => {
@@ -247,20 +209,60 @@ export default function StrudelDemo() {
                     await Promise.all([loadModules, registerSynthSounds(), registerSoundfonts()]);
                 },
             });
-            
         document.getElementById('proc').value = stranger_tune
-        //setInstrumentBlocks(parser.getInstrumentBlocks(songText))
     }
-    //console.log(songText)
-
     globalEditor.setCode(songText)
     if(isPLaying) globalEditor.evaluate();
-
-    console.log(toggled)
 }, [songText]);
 
 
+    useEffect(() => {
+        const volume = globalVolume
+        const svg = d3.select("#barChart svg");
+        svg.selectAll("*").remove();
 
+        const w = +svg.attr("width");
+        const h = +svg.attr("height");
+
+        const yScale = d3.scaleLinear()
+            .domain([0, 100])
+            .range([h, 0]);
+
+        const barX = w / 4;
+        const barW = w / 2;
+
+        svg.append("rect")
+            .attr("x", barX)
+            .attr("y", 0)
+            .attr("width", barW)
+            .attr("height", h)
+            .attr("fill", "black")
+            .attr("stroke", "black")
+            .attr("stroke-width", 2);
+
+        const defs = svg.append("defs");
+        const gradient = defs.append("linearGradient")
+            .attr("id", "vu-gradient")
+            .attr("gradientUnits", "userSpaceOnUse")
+            .attr("x1", 0).attr("y1", h)
+            .attr("x2", 0).attr("y2", 0);
+
+        gradient.append("stop").attr("offset", "0%").attr("stop-color", "green");
+        gradient.append("stop").attr("offset", "50%").attr("stop-color", "yellow");
+        gradient.append("stop").attr("offset", "70%").attr("stop-color", "red");
+        gradient.append("stop").attr("offset", "100%").attr("stop-color", "red");
+
+        svg.append("rect")
+            .attr("x", barX)
+            .attr("width", barW)
+            .attr("y", yScale(volume))
+            .attr("height", h- yScale(volume))
+            .attr("fill", "url(#vu-gradient)")
+            .attr("stroke", "black")
+            .attr("stroke-width", 2);
+
+
+    }, [globalVolume]);
 return (
     <div>
 
@@ -289,7 +291,11 @@ return (
                     <div className="col-md-4">
                         <DJSliders onLoad={(event) => handleLoad(event.target.files[0])} onSave={handleSave} onMute={handleMute}  instrumentBlocks={instrumentBlocks} toggled={toggled} onToggle={(event) => handleToggle(event.target.value)} onHighsChange={(e) => handleHighsChange(e.target.value) } onLowsChange={(e) => handleLowsChange(e.target.value) } onReverbChange={(e) => handleReverbChange(e.target.value) }/>
                     </div>
+
                 </div>
+            </div>
+            <div id="barChart" className="position-fixed end-0 bottom-0  me-5 mb-5">
+                <svg width="200" height="300"></svg>
             </div>
             <canvas id="roll"></canvas>
         </main >
