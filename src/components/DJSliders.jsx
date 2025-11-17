@@ -1,7 +1,7 @@
 import VerticalSlider from "./VerticalSlider";
 import Checkbox from "./Checkbox";
 
-function DJSliders({instrumentBlocks, toggled, onToggle,onMute, onHighsChange, onLowsChange, onReverbChange, onSave}) {
+function DJSliders({instrumentBlocks, toggled, onToggle,onMute, onHighsChange, onLowsChange, onReverbChange, onSave, onLoad}) {
     return(
         <div className="container bg-secondary bg-opacity-75 text-light p-4 rounded">
             <h4 className="text-center">Mixer Controls</h4>
@@ -23,9 +23,12 @@ function DJSliders({instrumentBlocks, toggled, onToggle,onMute, onHighsChange, o
                         Mute
                     </button>
                 </div>
-                <div className="col mt-4 text-center">
-                    <input type="file" accept="application/json" className="btn btn-primary" onChange={onLoad}/>
-                </div>
+
+                <label className="col mt-4 text-center btn btn-primary">
+                    Load
+                    <input type="file" accept="application/json" hidden onChange={onLoad}/>
+                </label>
+
                 <div className="col mt-4 text-center">
                     <button type="button" className="btn btn-primary" onClick={onSave}>
                         save

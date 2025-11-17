@@ -173,6 +173,17 @@ export default function StrudelDemo() {
         console.log("this has not worked?")
     }
 
+    const handleLoad = async (file) => {
+        if(!file) return;
+        const text = await file.text();
+        const jsoned = JSON.parse(text);
+
+        const [mixTitle] = Object.keys(jsoned)
+        const songText = jsoned[mixTitle];
+        setSongText(songText);
+
+    }
+
     const parser = SongTextParser();
 
     const [songText, setSongText] = useState(stranger_tune)
@@ -276,7 +287,7 @@ return (
                         <div className={"rounded"} id="output" />
                     </div>
                     <div className="col-md-4">
-                        <DJSliders onSave={handleSave} onMute={handleMute}  instrumentBlocks={instrumentBlocks} toggled={toggled} onToggle={(event) => handleToggle(event.target.value)} onHighsChange={(e) => handleHighsChange(e.target.value) } onLowsChange={(e) => handleLowsChange(e.target.value) } onReverbChange={(e) => handleReverbChange(e.target.value) }/>
+                        <DJSliders onLoad={(event) => handleLoad(event.target.files[0])} onSave={handleSave} onMute={handleMute}  instrumentBlocks={instrumentBlocks} toggled={toggled} onToggle={(event) => handleToggle(event.target.value)} onHighsChange={(e) => handleHighsChange(e.target.value) } onLowsChange={(e) => handleLowsChange(e.target.value) } onReverbChange={(e) => handleReverbChange(e.target.value) }/>
                     </div>
                 </div>
             </div>
