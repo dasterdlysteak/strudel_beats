@@ -116,8 +116,32 @@ export default function StrudelDemo() {
     const handleVolumeChange = (Volume) => {
         console.log(`volume: ${Volume}`)
 
+        setInstrumentBlocks(effectController.changeVolume(instrumentBlocks, Volume))
+        //setInstrumentBlocks(effectController.processEffect(instrumentBlocks, Volume, "gain"))
+        setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
+    }
+
+    const handleReverbChange = (reverb) => {
+        console.log(`reverb: ${reverb}`)
+
         //setInstrumentBlocks(effectController.changeVolume(instrumentBlocks, Volume))
-        setInstrumentBlocks(effectController.processEffect(instrumentBlocks, Volume, "gain"))
+        setInstrumentBlocks(effectController.processEffect(instrumentBlocks, reverb, "room"))
+        setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
+    }
+
+    const handleLowsChange = (lows) => {
+        console.log(`lows: ${lows}`)
+
+        //setInstrumentBlocks(effectController.changeVolume(instrumentBlocks, Volume))
+        setInstrumentBlocks(effectController.processEffect(instrumentBlocks, lows, "lpf"))
+        setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
+    }
+
+    const handleHighsChange = (highs) => {
+        console.log(`highs: ${highs}`)
+
+        //setInstrumentBlocks(effectController.changeVolume(instrumentBlocks, Volume))
+        setInstrumentBlocks(effectController.processEffect(instrumentBlocks, highs, "hpf"))
         setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
     }
 
@@ -226,7 +250,7 @@ return (
                     <div className="col-md-4">
 
                         <br />
-                        <StandardControlArea onBPMChange={(e) => handleCPSChange(e.target.value)} bpm={cps.bpm}   onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
+                        <StandardControlArea onBPMChange={(e) => handleCPSChange(e.target.value)} bpm={cps.bpm} onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
                     </div>
 
                 </div>
@@ -236,7 +260,7 @@ return (
                         <div className={"rounded"} id="output" />
                     </div>
                     <div className="col-md-4">
-                        <DJSliders onMute={handleMute}  instrumentBlocks={instrumentBlocks} toggled={toggled} onToggle={(event) => handleToggle(event.target.value)}/>
+                        <DJSliders onMute={handleMute}  instrumentBlocks={instrumentBlocks} toggled={toggled} onToggle={(event) => handleToggle(event.target.value)} onHighsChange={(e) => handleHighsChange(e.target.value) } onLowsChange={(e) => handleLowsChange(e.target.value) } onReverbChange={(e) => handleReverbChange(e.target.value) }/>
                     </div>
                 </div>
             </div>

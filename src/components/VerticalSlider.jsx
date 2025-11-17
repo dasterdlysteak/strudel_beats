@@ -1,4 +1,4 @@
-function VerticalSlider({label}) {
+function VerticalSlider({label, onEffectTrigger, min=0, max=1}, step=0.05) {
     return(
         <div className="d-flex flex-column align-items-center"
              style={{ height: "220px", width: "60px" }}>
@@ -14,8 +14,10 @@ function VerticalSlider({label}) {
                 <input
                     type="range"
                     className="form-range"
-                    min="0"
-                    max="100"
+                    min={min}
+                    max={max}
+                    step={step}
+                    onInput={onEffectTrigger}
                     style={{
                         transform: "rotate(90deg) scaleX(-1)",
                         transformOrigin: "center center",
