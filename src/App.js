@@ -18,6 +18,7 @@ import {SongTextParser} from "./utils/SongTextParser";
 import {EffectCentre} from "./utils/EffectCentre";
 import DJSliders from "./components/DJSliders";
 
+
 let globalEditor = null;
 
 const handleD3Data = (event) => {
@@ -157,6 +158,21 @@ export default function StrudelDemo() {
         console.log(songText);
     }
 
+    const handleSave = () => {
+        const mixTitle = window.prompt('Please enter a title', "Your Strudal Mix Title");
+        if(!mixTitle) return;
+        const filename = `${mixTitle}.json`
+        const songDataJson = {[mixTitle]: songText};
+        const blob = new Blob([JSON.stringify(songDataJson)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const download = document.createElement("a");
+
+        download.href = url;
+        download.download = filename;
+        download.click();
+        console.log("this has not worked?")
+    }
+
     const parser = SongTextParser();
 
     const [songText, setSongText] = useState(stranger_tune)
@@ -260,7 +276,7 @@ return (
                         <div className={"rounded"} id="output" />
                     </div>
                     <div className="col-md-4">
-                        <DJSliders onMute={handleMute}  instrumentBlocks={instrumentBlocks} toggled={toggled} onToggle={(event) => handleToggle(event.target.value)} onHighsChange={(e) => handleHighsChange(e.target.value) } onLowsChange={(e) => handleLowsChange(e.target.value) } onReverbChange={(e) => handleReverbChange(e.target.value) }/>
+                        <DJSliders onSave={handleSave} onMute={handleMute}  instrumentBlocks={instrumentBlocks} toggled={toggled} onToggle={(event) => handleToggle(event.target.value)} onHighsChange={(e) => handleHighsChange(e.target.value) } onLowsChange={(e) => handleLowsChange(e.target.value) } onReverbChange={(e) => handleReverbChange(e.target.value) }/>
                     </div>
                 </div>
             </div>
