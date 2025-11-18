@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b73baa94-94b3-464a-a946-d6f7762f5555" name="Changes" comment="- final commit&#10;&#10;merging dev into main" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Jesse Hamilton-Young &lt;101297717+dasterdlysteak@users.noreply.github.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Development-Branch_partB" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;dasterdlysteak&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/dasterdlysteak/strudel_beats&quot;,
+    &quot;accountId&quot;: &quot;58ab616b-322d-494e-8b27-a438025dbe31&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="34N5rHlcJeiPj1YNeyPSwgmRjwq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.App.js.executor": "Run",
+    "Node.js.PreProcessTextArea.jsx.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2025.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jesse\WebstormProjects\strudel_beats\public" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-WS-252.26830.93" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b73baa94-94b3-464a-a946-d6f7762f5555" name="Changes" comment="" />
+      <created>1761041386166</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761041386166</updated>
+      <workItem from="1761041387917" duration="13096000" />
+      <workItem from="1761465447138" duration="14695000" />
+      <workItem from="1761629443114" duration="298000" />
+      <workItem from="1761630642795" duration="1083000" />
+      <workItem from="1761642044644" duration="16365000" />
+      <workItem from="1761812685001" duration="17269000" />
+      <workItem from="1762156551413" duration="35668000" />
+      <workItem from="1763027781115" duration="104901000" />
+    </task>
+    <task id="LOCAL-00001" summary="- Test Commit">
+      <option name="closed" value="true" />
+      <created>1761044217899</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1761044217899</updated>
+    </task>
+    <task id="LOCAL-00002" summary="- Completed first assignment tutor video">
+      <option name="closed" value="true" />
+      <created>1761131222292</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1761131222292</updated>
+    </task>
+    <task id="LOCAL-00003" summary="- Completed first assignment tutor video">
+      <option name="closed" value="true" />
+      <created>1761131247875</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1761131247875</updated>
+    </task>
+    <task id="LOCAL-00004" summary="- Completed second assignment video&#10;&#10;got some basic music player bootstrap code online and began personalising it to project">
+      <option name="closed" value="true" />
+      <created>1761217976422</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1761217976422</updated>
+    </task>
+    <task id="LOCAL-00005" summary="- moving things around and getting the front end looking nicer&#10;&#10;containerising the play and proc buttons and adding some basic stying">
+      <option name="closed" value="true" />
+      <created>1761554750490</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1761554750490</updated>
+    </task>
+    <task id="LOCAL-00006" summary="- first movement session complete&#10;&#10;styling beginning to take shape - starting to understand the containerisation aspect of react / passing procs down endlessly">
+      <option name="closed" value="true" />
+      <created>1761559219108</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1761559219108</updated>
+    </task>
+    <task id="LOCAL-00007" summary="- trying to mess with the repl styling&#10;&#10;trying to mess with the styling of the Repl minor success, the scroll bars being a cunt though">
+      <option name="closed" value="true" />
+      <created>1761565551328</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1761565551328</updated>
+    </task>
+    <task id="LOCAL-00008" summary="- fixed reply scrollbar issue&#10;&#10;looking at how to go about parsing the songText and getting my head around how to reactify methods">
+      <option name="closed" value="true" />
+      <created>1761648979298</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1761648979298</updated>
+    </task>
+    <task id="LOCAL-00009" summary="- started work on parser logic&#10;&#10;still need to work out regex or rule for finding the block title / plug into volume control">
+      <option name="closed" value="true" />
+      <created>1761651447148</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1761651447148</updated>
+    </task>
+    <task id="LOCAL-00010" summary="- renamed songeText parser&#10;&#10;realised my regex idea is only going to work for instrument groups and if I want to grab anything else Ill need to come up with another solution">
+      <option name="closed" value="true" />
+      <created>1761725693341</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1761725693341</updated>
+    </task>
+    <task id="LOCAL-00011" summary="- pre experiment commit&#10;&#10;realised getting the text out is the easy part putting the text back in is tricky. need a cleanish commit to revert back to while I throw stuff at the problem">
+      <option name="closed" value="true" />
+      <created>1761730568043</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1761730568043</updated>
+    </task>
+    <task id="LOCAL-00012" summary="- working through the songtext problem&#10;&#10;Im ignoring getting the instrument blocks back into the songText for now and worshipping at the altar of regexes to deal with the fact that instrument blocks can be both a stack() and not a stack() (im going to be very upset if instrument blocks can be other things other than stack or not stack)">
+      <option name="closed" value="true" />
+      <created>1761737772794</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1761737772794</updated>
+    </task>
+    <task id="LOCAL-00013" summary="- finished volume change logic&#10;&#10;I hope.">
+      <option name="closed" value="true" />
+      <created>1761813565228</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1761813565228</updated>
+    </task>
+    <task id="LOCAL-00014" summary="- had a crack at returning the instrument blocks to the song text&#10;&#10;need to get my head around passing the variables and handlers around then I can test">
+      <option name="closed" value="true" />
+      <created>1761816779624</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1761816779624</updated>
+    </task>
+    <task id="LOCAL-00015" summary="- volume logics all there&#10;&#10;now to fix the broken mess">
+      <option name="closed" value="true" />
+      <created>1761826447001</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1761826447001</updated>
+    </task>
+    <task id="LOCAL-00016" summary="- fixed errors that stopped the page loading&#10;&#10;logic still doesnt work -_-">
+      <option name="closed" value="true" />
+      <created>1761826840984</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1761826840984</updated>
+    </task>
+    <task id="LOCAL-00017" summary="- its all pretty broken &#10;&#10;Theres issues in the parser's returned text - most likely my regex sucks">
+      <option name="closed" value="true" />
+      <created>1761827713844</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1761827713844</updated>
+    </task>
+    <task id="LOCAL-00018" summary="- fixed getInstrumentBlocks&#10;&#10;added the logic I missed for adding the line to the code block each loop&#10;&#10;fixed list push logic that meant I was pushing a new version of each instrument block each loop">
+      <option name="closed" value="true" />
+      <created>1761830376066</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1761830376066</updated>
+    </task>
+    <task id="LOCAL-00019" summary="- have the adding gain functionality working&#10;&#10;I just cant get the blocks to go back into the songText properly - clean commit while its mostly working">
+      <option name="closed" value="true" />
+      <created>1762160511592</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1762160511592</updated>
+    </task>
+    <task id="LOCAL-00020" summary="- replacing the text works now&#10;&#10;but now appending the gain values is cooked">
+      <option name="closed" value="true" />
+      <created>1762168042658</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1762168042658</updated>
+    </task>
+    <task id="LOCAL-00021" summary="- volume works for the most part&#10;&#10;still some tweaks to be made but proof of concept is there&#10;&#10;starting on fixing styling and audio controls for presentation">
+      <option name="closed" value="true" />
+      <created>1762172901044</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1762172901044</updated>
+    </task>
+    <task id="LOCAL-00022" summary="- A lot of styling has happened&#10;&#10;committing while its not broken">
+      <option name="closed" value="true" />
+      <created>1762178922851</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1762178922851</updated>
+    </task>
+    <task id="LOCAL-00023" summary="- it actually looks not bad&#10;&#10;finished the lions share of styling will present the app as is and make minor tweaks before the due date">
+      <option name="closed" value="true" />
+      <created>1762185185111</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1762185185111</updated>
+    </task>
+    <task id="LOCAL-00024" summary="- final tweaks before presentation&#10;&#10;made the styling for the mixer match the play controls more">
+      <option name="closed" value="true" />
+      <created>1762218291819</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1762218291819</updated>
+    </task>
+    <task id="LOCAL-00025" summary="- final tweaks 2">
+      <option name="closed" value="true" />
+      <created>1762236965507</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1762236965507</updated>
+    </task>
+    <task id="LOCAL-00026" summary="- Improved Instrument Blocks&#10;&#10;improved the re-useability of the instrument blocks ahead of implementing further features">
+      <option name="closed" value="true" />
+      <created>1763030882189</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1763030882189</updated>
+    </task>
+    <task id="LOCAL-00027" summary="- toggle button generation&#10;&#10;started toggle button logic toggle buttons are now generated based on which instrument blocks are present">
+      <option name="closed" value="true" />
+      <created>1763032922518</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1763032922518</updated>
+    </task>
+    <task id="LOCAL-00028" summary="- toggle button functionality&#10;&#10;added some logic for toggling instrument blocks on and off - the toggle on/off display is behaving delayed, commiting before trying to figure out why">
+      <option name="closed" value="true" />
+      <created>1763039353545</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1763039353545</updated>
+    </task>
+    <task id="LOCAL-00029" summary="- sorted checkbox animations&#10;&#10;passed in toggleState from the element that changes so the react re-render is triggered&#10;&#10;fixed minor bug cause by instrument blocks re fetching everytime songText Updates">
+      <option name="closed" value="true" />
+      <created>1763042446330</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1763042446330</updated>
+    </task>
+    <task id="LOCAL-00030" summary="- toggle button minor bug fixes&#10;&#10;fixed the rendering for toggle buttons so that they actually disappear when an instrumentBlock is removed">
+      <option name="closed" value="true" />
+      <created>1763119677330</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1763119677330</updated>
+    </task>
+    <task id="LOCAL-00031" summary="- fixed delay in volume control&#10;&#10;fixed a bug that cause the volume to be one range step behind what the current gain value is">
+      <option name="closed" value="true" />
+      <created>1763206101920</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1763206101920</updated>
+    </task>
+    <task id="LOCAL-00032" summary="- started work on mute functionality&#10;&#10;got the boilerplate for muting various instrument blocks, realised I had a bunch of bugs in my checkbox toggling system so returned to the old way I was doing it with a few tweaks, and added a use effect that keeps the instrument blocks consistent between songtext updates">
+      <option name="closed" value="true" />
+      <created>1763271393180</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1763271393180</updated>
+    </task>
+    <task id="LOCAL-00033" summary="- fixed mute and render bugs&#10;&#10;added a new list to the handle mute funciton because react wont re render if I use the mutated instrument blocks??? why does this work? whatever it works now.&#10;&#10;fixed my toggle/mute logic so it behaves in the way a user would expect">
+      <option name="closed" value="true" />
+      <created>1763272513895</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1763272513895</updated>
+    </task>
+    <task id="LOCAL-00034" summary="- started CPS editing logic&#10;&#10;logic mostly there and props are passing through to the component properly &#10;&#10;its still not working but commiting as at a good reset point">
+      <option name="closed" value="true" />
+      <created>1763286099350</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1763286099350</updated>
+    </task>
+    <task id="LOCAL-00035" summary="- bpm working&#10;&#10;plugged in replacing the CPS parser method&#10;&#10;changed regex to account for the bpm value in the songtext being null sometimes">
+      <option name="closed" value="true" />
+      <created>1763286965617</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1763286965617</updated>
+    </task>
+    <task id="LOCAL-00036" summary="- moved checkboxes + bugfixes&#10;&#10;moved checkboxxes so there function is more obvious&#10;&#10;added guards for changing cpm so that the user cant enter invalid inputs">
+      <option name="closed" value="true" />
+      <created>1763293281023</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1763293281023</updated>
+    </task>
+    <task id="LOCAL-00037" summary="- other slider effects&#10;&#10;have made a copy of the volume logic that is able to handle multiple effects and only work on toggled instruments">
+      <option name="closed" value="true" />
+      <created>1763295385493</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1763295385493</updated>
+    </task>
+    <task id="LOCAL-00038" summary="- finished slider logic&#10;&#10;slider logic implemented completely, it works but the low band filter and high band filter don't behave properly so I will need to tweak values but the core is there... and works... finally">
+      <option name="closed" value="true" />
+      <created>1763366708519</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1763366708519</updated>
+    </task>
+    <task id="LOCAL-00039" summary="- adding json functionality&#10;&#10;added download function to download current song adding upload/load functionality now">
+      <option name="closed" value="true" />
+      <created>1763375631264</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1763375631264</updated>
+    </task>
+    <task id="LOCAL-00040" summary="- json functionality done&#10;&#10;can save and load in json files">
+      <option name="closed" value="true" />
+      <created>1763377878239</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1763377878239</updated>
+    </task>
+    <task id="LOCAL-00041" summary="- completed basic D3 graph&#10;&#10;created a basic single bar D3 graph that visually represents the gain across the track&#10;&#10;i've also noticed the low pass filter sucks so will replace with another control before adding finishing touches and recording demo">
+      <option name="closed" value="true" />
+      <created>1763390459173</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1763390459173</updated>
+    </task>
+    <task id="LOCAL-00042" summary="- fixed BOM validation bug&#10;&#10;fixed a bug cause by parseInt() ignore trailing letters and wrongfully passing validation">
+      <option name="closed" value="true" />
+      <created>1763419583439</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1763419583439</updated>
+    </task>
+    <task id="LOCAL-00043" summary="- swapped low band filter for pitch modulator&#10;&#10;swapped as the low band filter wasn't super user-friendly&#10;&#10;fixed minor bug with vertical sliders">
+      <option name="closed" value="true" />
+      <created>1763421525741</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1763421525741</updated>
+    </task>
+    <task id="LOCAL-00044" summary="- fixed minor naming bug">
+      <option name="closed" value="true" />
+      <created>1763421984219</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1763421984219</updated>
+    </task>
+    <task id="LOCAL-00045" summary="- fixed loading bug&#10;&#10;user can now edit loaded songs">
+      <option name="closed" value="true" />
+      <created>1763424474584</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1763424474584</updated>
+    </task>
+    <task id="LOCAL-00046" summary="- changes to song structure&#10;&#10;made preparations for next and back cycling through songs &#10;&#10;changed tunes to hold a dictionary of tunes&#10;&#10;plugged in an array of these tunes into the main app.js and swapped repl loading to use this array">
+      <option name="closed" value="true" />
+      <created>1763429408075</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1763429408075</updated>
+    </task>
+    <task id="LOCAL-00047" summary="- multiple songs achieved&#10;&#10;added final logic for changing the songs and created props for song title and artist for the player component">
+      <option name="closed" value="true" />
+      <created>1763437590657</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1763437590657</updated>
+    </task>
+    <task id="LOCAL-00048" summary="- final touches&#10;&#10;fixed small double loading error&#10;added comments to help explain the regex madness">
+      <option name="closed" value="true" />
+      <created>1763440980288</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1763440980288</updated>
+    </task>
+    <task id="LOCAL-00049" summary="- final commit&#10;&#10;merging dev into main">
+      <option name="closed" value="true" />
+      <created>1763458849547</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1763458849547</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="- final tweaks 2" />
+    <MESSAGE value="- Improved Instrument Blocks&#10;&#10;improved the re-useability of the instrument blocks ahead of implementing further features" />
+    <MESSAGE value="- toggle button generation&#10;&#10;started toggle button logic toggle buttons are now generated based on which instrument blocks are present" />
+    <MESSAGE value="- toggle button functionality&#10;&#10;added some logic for toggling instrument blocks on and off - the toggle on/off display is behaving delayed, commiting before trying to figure out why" />
+    <MESSAGE value="- sorted checkbox animations&#10;&#10;passed in toggleState from the element that changes so the react re-render is triggered&#10;&#10;fixed minor bug cause by instrument blocks re fetching everytime songText Updates" />
+    <MESSAGE value="- toggle button minor bug fixes&#10;&#10;fixed the rendering for toggle buttons so that they actually disappear when an instrumentBlock is removed" />
+    <MESSAGE value="- fixed delay in volume control&#10;&#10;fixed a bug that cause the volume to be one range step behind what the current gain value is" />
+    <MESSAGE value="- started work on mute functionality&#10;&#10;got the boilerplate for muting various instrument blocks, realised I had a bunch of bugs in my checkbox toggling system so returned to the old way I was doing it with a few tweaks, and added a use effect that keeps the instrument blocks consistent between songtext updates" />
+    <MESSAGE value="- fixed mute and render bugs&#10;&#10;added a new list to the handle mute funciton because react wont re render if I use the mutated instrument blocks??? why does this work? whatever it works now.&#10;&#10;fixed my toggle/mute logic so it behaves in the way a user would expect" />
+    <MESSAGE value="- started CPS editing logic&#10;&#10;logic mostly there and props are passing through to the component properly &#10;&#10;its still not working but commiting as at a good reset point" />
+    <MESSAGE value="- bpm working&#10;&#10;plugged in replacing the CPS parser method&#10;&#10;changed regex to account for the bpm value in the songtext being null sometimes" />
+    <MESSAGE value="- moved checkboxes + bugfixes&#10;&#10;moved checkboxxes so there function is more obvious&#10;&#10;added guards for changing cpm so that the user cant enter invalid inputs" />
+    <MESSAGE value="- other slider effects&#10;&#10;have made a copy of the volume logic that is able to handle multiple effects and only work on toggled instruments" />
+    <MESSAGE value="- finished slider logic&#10;&#10;slider logic implemented completely, it works but the low band filter and high band filter don't behave properly so I will need to tweak values but the core is there... and works... finally" />
+    <MESSAGE value="- adding json functionality&#10;&#10;added download function to download current song adding upload/load functionality now" />
+    <MESSAGE value="- json functionality done&#10;&#10;can save and load in json files" />
+    <MESSAGE value="- completed basic D3 graph&#10;&#10;created a basic single bar D3 graph that visually represents the gain across the track&#10;&#10;i've also noticed the low pass filter sucks so will replace with another control before adding finishing touches and recording demo" />
+    <MESSAGE value="- fixed BOM validation bug&#10;&#10;fixed a bug cause by parseInt() ignore trailing letters and wrongfully passing validation" />
+    <MESSAGE value="- swapped low band filter for pitch modulator&#10;&#10;swapped as the low band filter wasn't super user-friendly&#10;&#10;fixed minor bug with vertical sliders" />
+    <MESSAGE value="- fixed minor naming bug" />
+    <MESSAGE value="- fixed loading bug&#10;&#10;user can now edit loaded songs" />
+    <MESSAGE value="- changes to song structure&#10;&#10;made preparations for next and back cycling through songs &#10;&#10;changed tunes to hold a dictionary of tunes&#10;&#10;plugged in an array of these tunes into the main app.js and swapped repl loading to use this array" />
+    <MESSAGE value="- multiple songs achieved&#10;&#10;added final logic for changing the songs and created props for song title and artist for the player component" />
+    <MESSAGE value="- final touches&#10;&#10;fixed small double loading error&#10;added comments to help explain the regex madness" />
+    <MESSAGE value="- final commit&#10;&#10;merging dev into main" />
+    <option name="LAST_COMMIT_MESSAGE" value="- final commit&#10;&#10;merging dev into main" />
+  </component>
+</project>
