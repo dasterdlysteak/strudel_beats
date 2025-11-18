@@ -7,7 +7,7 @@ import { initAudioOnFirstClick } from '@strudel/webaudio';
 import { transpiler } from '@strudel/transpiler';
 import { getAudioContext, webaudioOutput, registerSynthSounds } from '@strudel/webaudio';
 import { registerSoundfonts } from '@strudel/soundfonts';
-import { stranger_tune } from './tunes';
+import {tunes} from './tunes';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 import DJ_Controls from "./components/DJ_Controls";
 import PlayButtons from './components/PlayButtons';
@@ -17,6 +17,7 @@ import StandardControlArea from "./components/StandardControlArea";
 import {SongTextParser} from "./utils/SongTextParser";
 import {EffectCentre} from "./utils/EffectCentre";
 import DJSliders from "./components/DJSliders";
+
 import * as d3 from "d3";
 
 
@@ -54,6 +55,13 @@ export default function StrudelDemo() {
 
     const hasRun = useRef(false);
 
+    const tuneList = [
+        {name: "stranger_tune", song: tunes.stranger_tune},
+        {name: "vermin_wrangle", song: tunes.vermin_wrangle}
+    ]
+
+    const [currentSong, setCurrentSong] = useState(0);
+
     const handlePlay = () => {
         globalEditor.evaluate();
         setIsPLaying(true);
@@ -62,6 +70,14 @@ export default function StrudelDemo() {
         globalEditor.stop();
         setIsPLaying(false);
     }
+    const handleNext = () => {
+
+    }
+
+    const handlePrev = () => {
+
+    }
+
     const handleToggle = (blockName) => {
         setInstrumentBlocks(prevBlocks => {
             const updated = prevBlocks.map(block =>
@@ -150,7 +166,7 @@ export default function StrudelDemo() {
 
     const parser = SongTextParser();
 
-    const [songText, setSongText] = useState(stranger_tune)
+    const [songText, setSongText] = useState(tuneList[currentSong].song);
 
     useEffect(() => {
         const cps = parser.getCPS(songText)
@@ -206,7 +222,7 @@ export default function StrudelDemo() {
                     await Promise.all([loadModules, registerSynthSounds(), registerSoundfonts()]);
                 },
             });
-        document.getElementById('proc').value = stranger_tune
+        document.getElementById('proc').value = tuneList[currentSong].song;
     }
     globalEditor.setCode(songText)
     if(isPLaying) globalEditor.evaluate();
