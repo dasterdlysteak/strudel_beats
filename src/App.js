@@ -17,9 +17,6 @@ import StandardControlArea from "./components/StandardControlArea";
 import {SongTextParser} from "./utils/SongTextParser";
 import {EffectCentre} from "./utils/EffectCentre";
 import DJSliders from "./components/DJSliders";
-
-
-
 import * as d3 from "d3";
 
 
@@ -144,10 +141,10 @@ export default function StrudelDemo() {
         if(!file) return;
         const text = await file.text();
         const jsoned = JSON.parse(text);
-
         const [mixTitle] = Object.keys(jsoned)
-        const songText = jsoned[mixTitle];
-        setSongText(songText);
+        const newSongText = jsoned[mixTitle];
+        setSongText(newSongText);
+        setInstrumentBlocks(parser.getInstrumentBlocks(newSongText));
 
     }
 
