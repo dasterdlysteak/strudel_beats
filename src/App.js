@@ -41,6 +41,8 @@ export function ProcessText(match, ...args) {
 
 export default function StrudelDemo() {
 
+    const parser = SongTextParser();
+
     const effectController = EffectCentre();
 
     const [isPLaying, setIsPLaying] = useState(false);
@@ -66,6 +68,8 @@ export default function StrudelDemo() {
 
     const [artist, setArtist] = useState(tuneList[currentSong].artist);
 
+    const [songText, setSongText] = useState(tuneList[currentSong].song);
+
     const handlePlay = () => {
         globalEditor.evaluate();
         setIsPLaying(true);
@@ -75,7 +79,7 @@ export default function StrudelDemo() {
         setIsPLaying(false);
     }
     const handleNext = () => {
-        console.log("next is working")
+
         const nextSong = (currentSong + 1) % tuneList.length
         setCurrentSong(nextSong)
         setSongText(tuneList[nextSong].song)
@@ -85,7 +89,7 @@ export default function StrudelDemo() {
     }
 
     const handlePrev = () => {
-        console.log("prev is working")
+
         const prevSong = (currentSong - 1 + tuneList.length) % tuneList.length
         setCurrentSong(prevSong)
         setSongText(tuneList[prevSong].song)
@@ -101,9 +105,6 @@ export default function StrudelDemo() {
                     ? { ...block, toggled: !block.toggled }
                     : block
             );
-
-            console.log("Toggled", blockName);
-            console.log("after toggling instrumentBlocks:", updated);
 
             return updated;
         });
@@ -142,16 +143,10 @@ export default function StrudelDemo() {
     }
 
     const handleMute = () => {
-        console.log('mute');
-        console.log(`instrument blocks before mute = `)
-        console.log(instrumentBlocks);
         const mutedBlocks = effectController.muteInstrumentBlocks(instrumentBlocks);
         setInstrumentBlocks(mutedBlocks);
-        console.log(`instrument blocks after mute =`)
-        console.log(instrumentBlocks);
         setSongText(parser.replaceInstrumentBlocks(mutedBlocks, songText))
         console.log(songText);
-
     }
 
     const handleSave = () => {
@@ -183,29 +178,23 @@ export default function StrudelDemo() {
 
     }
 
-    const parser = SongTextParser();
 
-    const [songText, setSongText] = useState(tuneList[currentSong].song);
 
     useEffect(() => {
         const cps = parser.getCPS(songText)
+        const currentInstrumentBlocks = parser.getInstrumentBlocks(songText)
         console.log('cps', cps)
         setCPS(cps)
-        if(!instrumentBlocks){
-            setInstrumentBlocks(parser.getInstrumentBlocks(songText))
-        }
-        else{
-            const currentInstrumentBlocks = parser.getInstrumentBlocks(songText);
-            const merged = currentInstrumentBlocks.map(currentInstrumentBlock => {
+        setInstrumentBlocks(currentBlocks => {
+            if (!currentBlocks) return currentInstrumentBlocks
+            return currentInstrumentBlocks.map(currentInstrumentBlock => {
                 const normalisedName = currentInstrumentBlock.name.replace(/^_+/, "");
                 const oldBlock = instrumentBlocks.find(
                     b => b.name.replace(/^_+/, "") === normalisedName
                 );
                 return oldBlock ? oldBlock : currentInstrumentBlock;
-            });
-            setInstrumentBlocks(merged);
-        }
-
+            })
+        });
     }, [songText]);
 
 
@@ -244,7 +233,7 @@ export default function StrudelDemo() {
         document.getElementById('proc').value = tuneList[currentSong].song;
     }
     globalEditor.setCode(songText)
-    if(isPLaying) globalEditor.evaluate();
+    if(isPLaying) {globalEditor.evaluate()};
 }, [songText]);
 
 

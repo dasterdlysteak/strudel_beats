@@ -1,6 +1,11 @@
 import {bps} from "@strudel/core";
 
 export const EffectCentre  = () => {
+    // global volume control for all instrument blocks
+    // firstly checking if more than one instrument is in the block (its a stack)
+    // and if so navigating to the end of the stack count calculating bracket depth
+    // then it looks for the gain keyword via a regex and if found replaces in with the new gain value
+    // else appends the new gain value at the end of the stack
     function changeVolume (InstrumentBlocks, volume) {
         InstrumentBlocks.forEach(instrumentBlock => {
             let body = instrumentBlock.codeBlock
@@ -32,7 +37,7 @@ export const EffectCentre  = () => {
                 if (/\.gain\([\s\S]*?\)/.test(body)){
                     body = body.replace(/\.gain\([\s\S]*?\)/, `.gain(${volume})`);
                 }else{
-                    body = body + `.gain(${volume})`; // I think there may be whitespace here that needs trimming: TEST
+                    body = body + `.gain(${volume})`;
 
                 }
 
@@ -42,6 +47,7 @@ export const EffectCentre  = () => {
         return InstrumentBlocks;
     }
 
+    // lets us check if the instrument block is selected and if so appends the _ mute symbol
     function muteInstrumentBlocks(instrumentBlocks) {
         return instrumentBlocks.map((instrumentBlock) => {
             let name = instrumentBlock.name
@@ -55,6 +61,7 @@ export const EffectCentre  = () => {
 
     }
 
+    // cps mutation logic along with validation of inputs
     function changeBPM(bpm, cps) {
         console.log("BPM: ")
         console.log(bpm)
@@ -71,6 +78,8 @@ export const EffectCentre  = () => {
 
     }
 
+    // almost identical to volume control but also takes in an effect argument and checks for instrument selection
+    // making this effecting for multiple effect mutations on selected instruments
     function processEffect (InstrumentBlocks, value, effect) {
         InstrumentBlocks.forEach(instrumentBlock => {
             if (!instrumentBlock.toggled){
