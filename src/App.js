@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useRef } from "react";
+import {useEffect, useRef, useState} from "react";
 import { StrudelMirror } from '@strudel/codemirror';
 import { evalScope } from '@strudel/core';
 import { drawPianoroll } from '@strudel/draw';
@@ -7,65 +7,197 @@ import { initAudioOnFirstClick } from '@strudel/webaudio';
 import { transpiler } from '@strudel/transpiler';
 import { getAudioContext, webaudioOutput, registerSynthSounds } from '@strudel/webaudio';
 import { registerSoundfonts } from '@strudel/soundfonts';
-import { stranger_tune } from './tunes';
+import {tunes} from './tunes';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
+import DJ_Controls from "./components/DJ_Controls";
+import PlayButtons from './components/PlayButtons';
+import ProcButtons from './components/ProcButtons';
+import PreProcessTextArea from './components/PreProcessTextArea';
+import StandardControlArea from "./components/StandardControlArea";
+import {SongTextParser} from "./utils/SongTextParser";
+import {EffectCentre} from "./utils/EffectCentre";
+import DJSliders from "./components/DJSliders";
+
+import * as d3 from "d3";
+
 
 let globalEditor = null;
 
 const handleD3Data = (event) => {
+
     console.log(event.detail);
 };
 
-export function SetupButtons() {
-
-    document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
-    document.getElementById('stop').addEventListener('click', () => globalEditor.stop());
-    document.getElementById('process').addEventListener('click', () => {
-        Proc()
-    }
-    )
-    document.getElementById('process_play').addEventListener('click', () => {
-        if (globalEditor != null) {
-            Proc()
-            globalEditor.evaluate()
-        }
-    }
-    )
-}
-
-
-
-export function ProcAndPlay() {
-    if (globalEditor != null && globalEditor.repl.state.started == true) {
-        console.log(globalEditor)
-        Proc()
-        globalEditor.evaluate();
-    }
-}
-
-export function Proc() {
-
-    let proc_text = document.getElementById('proc').value
-    let proc_text_replaced = proc_text.replaceAll('<p1_Radio>', ProcessText);
-    ProcessText(proc_text);
-    globalEditor.setCode(proc_text_replaced)
-}
 
 export function ProcessText(match, ...args) {
 
     let replace = ""
-    if (document.getElementById('flexRadioDefault2').checked) {
-        replace = "_"
-    }
+    // if (document.getElementById('flexRadioDefault2').checked) {
+    //     replace = "_"
+    // }
 
     return replace
 }
 
 export default function StrudelDemo() {
 
-const hasRun = useRef(false);
+    const parser = SongTextParser();
 
-useEffect(() => {
+    const effectController = EffectCentre();
+
+    const [isPLaying, setIsPLaying] = useState(false);
+
+    const [toggled, setToggled] = useState([]);
+
+    const [instrumentBlocks, setInstrumentBlocks] = useState([]);
+
+    const [cps, setCPS] = useState({});
+
+    const [globalVolume, setGlobalVolume] = useState(50);
+
+    const hasRun = useRef(false);
+
+    const tuneList = [
+        {name: "stranger_tune", song: tunes.stranger_tune.song, artist: tunes.stranger_tune.artist},
+        {name: "vermin_wrangle", song: tunes.vermin_wrangle.song, artist: tunes.vermin_wrangle.artist},
+    ]
+
+    const [currentSong, setCurrentSong] = useState(0);
+
+    const [songTitle, setSongTitle] = useState(tuneList[currentSong].name);
+
+    const [artist, setArtist] = useState(tuneList[currentSong].artist);
+
+    const [songText, setSongText] = useState(tuneList[currentSong].song);
+
+    const handlePlay = () => {
+        globalEditor.evaluate();
+        setIsPLaying(true);
+    }
+    const handleStop = ()=>{
+        globalEditor.stop();
+        setIsPLaying(false);
+    }
+    const handleNext = () => {
+
+        const nextSong = (currentSong + 1) % tuneList.length
+        setCurrentSong(nextSong)
+        setSongText(tuneList[nextSong].song)
+        setSongTitle(tuneList[nextSong].name)
+        setArtist(tuneList[nextSong].artist)
+        document.getElementById('proc').value = tuneList[nextSong].song;
+    }
+
+    const handlePrev = () => {
+
+        const prevSong = (currentSong - 1 + tuneList.length) % tuneList.length
+        setCurrentSong(prevSong)
+        setSongText(tuneList[prevSong].song)
+        setSongTitle(tuneList[prevSong].name)
+        setArtist(tuneList[prevSong].artist)
+        document.getElementById('proc').value = tuneList[prevSong].song;
+    }
+
+    const handleToggle = (blockName) => {
+        setInstrumentBlocks(prevBlocks => {
+            const updated = prevBlocks.map(block =>
+                block.name === blockName
+                    ? { ...block, toggled: !block.toggled }
+                    : block
+            );
+
+            return updated;
+        });
+
+    };
+
+    const handleCPSChange = (bpm) => {
+        const updatedCPS = effectController.changeBPM(bpm, cps)
+        setCPS(updatedCPS);
+        setSongText(parser.replaceCPS(updatedCPS, songText));
+    }
+
+    const handleVolumeChange = (Volume) => {
+        console.log(`volume: ${Volume}`)
+        setGlobalVolume(Volume * 100);
+        setInstrumentBlocks(effectController.changeVolume(instrumentBlocks, Volume))
+        setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
+    }
+
+    const handleReverbChange = (reverb) => {
+        console.log(`reverb: ${reverb}`)
+        setInstrumentBlocks(effectController.processEffect(instrumentBlocks, reverb, "room"))
+        setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
+    }
+
+    const handlePitchChange = (pitch) => {
+        console.log(`pitch: ${pitch}`)
+        setInstrumentBlocks(effectController.processEffect(instrumentBlocks, pitch, "transpose"))
+        setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
+    }
+
+    const handleHighsChange = (highs) => {
+        console.log(`highs: ${highs}`)
+        setInstrumentBlocks(effectController.processEffect(instrumentBlocks, highs, "hpf"))
+        setSongText(parser.replaceInstrumentBlocks(instrumentBlocks, songText))
+    }
+
+    const handleMute = () => {
+        const mutedBlocks = effectController.muteInstrumentBlocks(instrumentBlocks);
+        setInstrumentBlocks(mutedBlocks);
+        setSongText(parser.replaceInstrumentBlocks(mutedBlocks, songText))
+        console.log(songText);
+    }
+
+    const handleSave = () => {
+        const mixTitle = window.prompt('Please enter a title', "Your Strudal Mix Title");
+        if(!mixTitle) return;
+        const filename = `${mixTitle}.json`
+        const songDataJson = {[mixTitle]: {artist, songText}};
+        const blob = new Blob([JSON.stringify(songDataJson)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const download = document.createElement("a");
+
+        download.href = url;
+        download.download = filename;
+        download.click();
+
+    }
+
+    const handleLoad = async (file) => {
+        if(!file) return;
+        const text = await file.text();
+        const jsoned = JSON.parse(text);
+        const [mixTitle] = Object.keys(jsoned)
+        const newSongText = jsoned[mixTitle].songText;
+        const newSongArtist = jsoned[mixTitle].artist;
+        setSongText(newSongText);
+        setSongTitle(mixTitle);
+        setArtist(newSongArtist);
+        setInstrumentBlocks(parser.getInstrumentBlocks(newSongText));
+
+    }
+
+
+
+    useEffect(() => {
+        const cps = parser.getCPS(songText)
+        const currentInstrumentBlocks = parser.getInstrumentBlocks(songText)
+        setCPS(cps)
+        setInstrumentBlocks(currentBlocks => {
+            if (!currentBlocks) return currentInstrumentBlocks
+            return currentInstrumentBlocks.map(currentInstrumentBlock => {
+                const normalisedName = currentInstrumentBlock.name.replace(/^_+/, "");
+                const oldBlock = instrumentBlocks.find(
+                    b => b.name.replace(/^_+/, "") === normalisedName
+                );
+                return oldBlock ? oldBlock : currentInstrumentBlock;
+            })
+        });
+    }, [songText]);
+
+
+    useEffect(() => {
 
     if (!hasRun.current) {
         document.addEventListener("d3Data", handleD3Data);
@@ -97,57 +229,93 @@ useEffect(() => {
                     await Promise.all([loadModules, registerSynthSounds(), registerSoundfonts()]);
                 },
             });
-            
-        document.getElementById('proc').value = stranger_tune
-        SetupButtons()
-        Proc()
+        document.getElementById('proc').value = tuneList[currentSong].song;
     }
+    globalEditor.setCode(songText)
+    if(isPLaying) {globalEditor.evaluate()};
+}, [songText]);
 
-}, []);
+
+    useEffect(() => {
+        const volume = globalVolume
+        const svg = d3.select("#barChart svg");
+        svg.selectAll("*").remove();
+
+        const w = +svg.attr("width");
+        const h = +svg.attr("height");
+
+        const yScale = d3.scaleLinear()
+            .domain([0, 100])
+            .range([h, 0]);
+
+        const barX = w / 4;
+        const barW = w / 2;
+
+        svg.append("rect")
+            .attr("x", barX)
+            .attr("y", 0)
+            .attr("width", barW)
+            .attr("height", h)
+            .attr("fill", "black")
+            .attr("stroke", "black")
+            .attr("stroke-width", 2);
+
+        const defs = svg.append("defs");
+        const gradient = defs.append("linearGradient")
+            .attr("id", "vu-gradient")
+            .attr("gradientUnits", "userSpaceOnUse")
+            .attr("x1", 0).attr("y1", h)
+            .attr("x2", 0).attr("y2", 0);
+
+        gradient.append("stop").attr("offset", "0%").attr("stop-color", "green");
+        gradient.append("stop").attr("offset", "50%").attr("stop-color", "yellow");
+        gradient.append("stop").attr("offset", "70%").attr("stop-color", "red");
+        gradient.append("stop").attr("offset", "100%").attr("stop-color", "red");
+
+        svg.append("rect")
+            .attr("x", barX)
+            .attr("width", barW)
+            .attr("y", yScale(volume))
+            .attr("height", h- yScale(volume))
+            .attr("fill", "url(#vu-gradient)")
+            .attr("stroke", "black")
+            .attr("stroke-width", 2);
 
 
+    }, [globalVolume]);
 return (
     <div>
-        <h2>Strudel Demo</h2>
+
         <main>
 
-            <div className="container-fluid">
+            <div className="container min-vh-100">
+
+                <h2 className="display-3 text-light text-center">Strudel Demo</h2>
+
                 <div className="row">
-                    <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <label htmlFor="exampleFormControlTextarea1" className="form-label">Text to preprocess:</label>
-                        <textarea className="form-control" rows="15" id="proc" ></textarea>
+                    <div className="col-md-8 g-3" style={{ maxHeight: '50vh', overflowY: 'auto', scrollbarWidth: 'none' }}>
+                        <PreProcessTextArea defaultValue={songText} onChange={(e)=>setSongText(e.target.value)} />
                     </div>
                     <div className="col-md-4">
 
-                        <nav>
-                            <button id="process" className="btn btn-outline-primary">Preprocess</button>
-                            <button id="process_play" className="btn btn-outline-primary">Proc & Play</button>
-                            <br />
-                            <button id="play" className="btn btn-outline-primary">Play</button>
-                            <button id="stop" className="btn btn-outline-primary">Stop</button>
-                        </nav>
+                        <br />
+                        <StandardControlArea artist={artist} title={songTitle} onBPMChange={(e) => handleCPSChange(e.target.value)} bpm={cps.bpm} onPlay={handlePlay} onStop={handleStop} onNext={handleNext} onPrev={handlePrev} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
                     </div>
+
                 </div>
                 <div className="row">
-                    <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <div id="editor" />
-                        <div id="output" />
+                    <div className="col-md-8 g-3 rounded hide-scrollbar" style={{ maxHeight: '45vh'}}>
+                        <div className={"rounded form-control bg-dark text-light border-secondary mb-5"} id="editor" style={{ maxHeight: '45vh', overflowY: 'auto', scrollbarWidth: 'none' }}/>
+                        <div className={"rounded"} id="output" />
                     </div>
                     <div className="col-md-4">
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onChange={ProcAndPlay} defaultChecked />
-                            <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                p1: ON
-                            </label>
-                        </div>
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onChange={ProcAndPlay} />
-                            <label className="form-check-label" htmlFor="flexRadioDefault2">
-                                p1: HUSH
-                            </label>
-                        </div>
+                        <DJSliders onLoad={(event) => handleLoad(event.target.files[0])} onSave={handleSave} onMute={handleMute}  instrumentBlocks={instrumentBlocks} toggled={toggled} onToggle={(event) => handleToggle(event.target.value)} onHighsChange={(e) => handleHighsChange(e.target.value) } onPitchChange={(e) => handlePitchChange(e.target.value) } onReverbChange={(e) => handleReverbChange(e.target.value) }/>
                     </div>
+
                 </div>
+            </div>
+            <div id="barChart" className="position-fixed end-0 bottom-0  me-5 mb-5">
+                <svg width="200" height="300"></svg>
             </div>
             <canvas id="roll"></canvas>
         </main >
