@@ -1,6 +1,8 @@
 export const tunes = {
-stranger_tune:
-`setcps(140/60/4)
+
+stranger_tune:{
+    artist: "Algorave Dave",
+    song: `setcps(140/60/4)
 
 samples('github:algorave-dave/samples')
 samples('https://raw.githubusercontent.com/tidalcycles/Dirt-Samples/master/strudel.json')
@@ -99,10 +101,13 @@ stack(
 // all(x => x.gain(mouseX.range(0,1)))
 // all(x => x.log())
 
-// @version 1.2`,
+// @version 1.2`
+}
+,
 
-vermin_wrangle:
-`setcps(52/60)
+vermin_wrangle:{
+    artist: "eefano",
+    song:`setcps(52/60/1)
 
 // "Vermin Mangle" (work in progress)
 // song @by Tim Smith (Cardiacs)
@@ -133,10 +138,13 @@ n("[0 ~ ~]")
   .s("gm_tuba:3")
   .gain(1)
 
-drums:
-s("bassdrum2:2,tambourine:0")
-  .clip(1.5)
-  .gain(1.5)
+
+
+
+
+
 
 all:
-all(x => x.room(.8))`};
+all(x => x.room(.8))`}
+
+}

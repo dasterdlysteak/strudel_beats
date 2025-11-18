@@ -56,11 +56,15 @@ export default function StrudelDemo() {
     const hasRun = useRef(false);
 
     const tuneList = [
-        {name: "stranger_tune", song: tunes.stranger_tune},
-        {name: "vermin_wrangle", song: tunes.vermin_wrangle}
+        {name: "stranger_tune", song: tunes.stranger_tune.song, artist: tunes.stranger_tune.artist},
+        {name: "vermin_wrangle", song: tunes.vermin_wrangle.song, artist: tunes.vermin_wrangle.artist},
     ]
 
     const [currentSong, setCurrentSong] = useState(0);
+
+    const [songTitle, setSongTitle] = useState(tuneList[currentSong].name);
+
+    const [artist, setArtist] = useState(tuneList[currentSong].artist);
 
     const handlePlay = () => {
         globalEditor.evaluate();
@@ -71,11 +75,23 @@ export default function StrudelDemo() {
         setIsPLaying(false);
     }
     const handleNext = () => {
-
+        console.log("next is working")
+        const nextSong = (currentSong + 1) % tuneList.length
+        setCurrentSong(nextSong)
+        setSongText(tuneList[nextSong].song)
+        setSongTitle(tuneList[nextSong].name)
+        setArtist(tuneList[nextSong].artist)
+        document.getElementById('proc').value = tuneList[nextSong].song;
     }
 
     const handlePrev = () => {
-
+        console.log("prev is working")
+        const prevSong = (currentSong - 1 + tuneList.length) % tuneList.length
+        setCurrentSong(prevSong)
+        setSongText(tuneList[prevSong].song)
+        setSongTitle(tuneList[prevSong].name)
+        setArtist(tuneList[prevSong].artist)
+        document.getElementById('proc').value = tuneList[prevSong].song;
     }
 
     const handleToggle = (blockName) => {
@@ -142,7 +158,7 @@ export default function StrudelDemo() {
         const mixTitle = window.prompt('Please enter a title', "Your Strudal Mix Title");
         if(!mixTitle) return;
         const filename = `${mixTitle}.json`
-        const songDataJson = {[mixTitle]: songText};
+        const songDataJson = {[mixTitle]: {artist, songText}};
         const blob = new Blob([JSON.stringify(songDataJson)], { type: "application/json" });
         const url = URL.createObjectURL(blob);
         const download = document.createElement("a");
@@ -158,8 +174,11 @@ export default function StrudelDemo() {
         const text = await file.text();
         const jsoned = JSON.parse(text);
         const [mixTitle] = Object.keys(jsoned)
-        const newSongText = jsoned[mixTitle];
+        const newSongText = jsoned[mixTitle].songText;
+        const newSongArtist = jsoned[mixTitle].artist;
         setSongText(newSongText);
+        setSongTitle(mixTitle);
+        setArtist(newSongArtist);
         setInstrumentBlocks(parser.getInstrumentBlocks(newSongText));
 
     }
@@ -292,7 +311,7 @@ return (
                     <div className="col-md-4">
 
                         <br />
-                        <StandardControlArea onBPMChange={(e) => handleCPSChange(e.target.value)} bpm={cps.bpm} onPlay={handlePlay} onStop={handleStop} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
+                        <StandardControlArea artist={artist} title={songTitle} onBPMChange={(e) => handleCPSChange(e.target.value)} bpm={cps.bpm} onPlay={handlePlay} onStop={handleStop} onNext={handleNext} onPrev={handlePrev} onVolumeChange={(e) => handleVolumeChange(e.target.value) } isPlaying={isPLaying}  />
                     </div>
 
                 </div>

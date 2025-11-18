@@ -5,14 +5,14 @@ import DJ_Controls from "./DJ_Controls";
 import Checkbox from "./Checkbox";
 
 
-function StandardControlArea({ onPlay, onStop, onVolumeChange, isPlaying, onBPMChange, bpm}){
+function StandardControlArea({artist, title, onPlay, onStop, onVolumeChange, isPlaying, onBPMChange, bpm, onNext, onPrev}){
     return (
         <div className="card bg-secondary bg-opacity-75 p-3 mb-3">
 
             <div className="d-flex mt-3 gap-2" role="group" aria-label="Basic button">
 
 
-                <DJ_Controls onPlay={onPlay} onStop={onStop} onVolumeChange={onVolumeChange} isPlaying={isPlaying} />
+                <DJ_Controls artist={artist} title={title} onPlay={onPlay} onStop={onStop} onVolumeChange={onVolumeChange} isPlaying={isPlaying} onNext={onNext} onPrev={onPrev} />
 
 
             </div>

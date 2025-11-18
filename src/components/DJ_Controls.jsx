@@ -1,6 +1,6 @@
 import {ProcAndPlay} from "../App";
 
-function DJ_Controls({onPlay, onStop, onVolumeChange, isPlaying}) {
+function DJ_Controls({artist, title, onPlay, onStop, onVolumeChange, isPlaying, onPrev, onNext}) {
     return(
         <>
 
@@ -12,15 +12,15 @@ function DJ_Controls({onPlay, onStop, onVolumeChange, isPlaying}) {
 
                 <div className="d-flex align-items-center mb-2 ">
                     <div className="d-flex flex-column align-items-center w-100">
-                        <h6 className="text-center">Untitled</h6>
-                        <small className="text-muted text-center">Algorave Dave</small>
+                        <h6 className="text-center">{title}</h6>
+                        <small className="text-muted text-center">{artist}</small>
                     </div>
                 </div>
 
 
 
                 <div className="d-flex justify-content-center gap-3">
-                    <button className="btn btn-outline-secondary btn-lg">
+                    <button className="btn btn-outline-secondary btn-lg" onClick={onPrev}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              className="bi bi-skip-backward-fill" viewBox="0 0 16 16">
                             <path
@@ -43,7 +43,7 @@ function DJ_Controls({onPlay, onStop, onVolumeChange, isPlaying}) {
                         ) }
 
                     </button>
-                    <button className="btn btn-outline-secondary btn-lg">
+                    <button className="btn btn-outline-secondary btn-lg" onClick={onNext}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              className="bi bi-skip-forward-fill" viewBox="0 0 16 16">
                             <path
