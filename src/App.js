@@ -183,7 +183,6 @@ export default function StrudelDemo() {
     useEffect(() => {
         const cps = parser.getCPS(songText)
         const currentInstrumentBlocks = parser.getInstrumentBlocks(songText)
-        console.log('cps', cps)
         setCPS(cps)
         setInstrumentBlocks(currentBlocks => {
             if (!currentBlocks) return currentInstrumentBlocks

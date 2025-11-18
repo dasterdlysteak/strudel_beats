@@ -63,16 +63,12 @@ export const EffectCentre  = () => {
 
     // cps mutation logic along with validation of inputs
     function changeBPM(bpm, cps) {
-        console.log("BPM: ")
-        console.log(bpm)
         if(bpm != "" && bpm != null && isNaN(Number(bpm ))){
             alert("Please only enter numbers!")
             return cps
         }else{
             const newCPS = { ...cps };
             newCPS.bpm = bpm;
-            console.log("CPS: ")
-            console.log(newCPS);
             return newCPS
         }
 
